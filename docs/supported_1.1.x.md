@@ -1,5 +1,5 @@
-# Picasso 1.10005.x
-
+# Bittensor 1.1.x
+# TODO:
 ## System
 
 | Name                    | Nano S | Nano S XL | Nano SP/X | Nesting | Arguments                         |

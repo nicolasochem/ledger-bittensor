@@ -1,5 +1,6 @@
 #*******************************************************************************
 #  Ledger App
+#  (c) 2023 Opentensor Technologies
 #  (c) 2019 - 2023 Zondax AG
 #  (c) 2017 Ledger
 #
@@ -42,27 +43,27 @@ $(info ************ FULL PARSER ENABLED ************)
 endif
 
 ifndef COIN
-COIN=PICA
+COIN=TAO
 endif
 
 include $(CURDIR)/Makefile.version
 
 $(info COIN  = [$(COIN)])
 
-ifeq ($(COIN),PICA)
+ifeq ($(COIN),TAO)
 # Main app configuration
 DEFINES += APP_STANDARD
 ifneq ($(TARGET_NAME),TARGET_NANOS)
 DEFINES += SUBSTRATE_PARSER_FULL
 endif
-APPNAME = "Picasso"
-APPPATH = "44'/434'"
+APPNAME = "Bittensor"
+APPPATH = "44'/1005'"
 
-else ifeq ($(COIN),PICA_XL)
+else ifeq ($(COIN),TAO_XL)
 # XL app configuration
 DEFINES += APP_STANDARD SUBSTRATE_PARSER_FULL
-APPNAME = "Picasso XL"
-APPPATH = "44'/434'"
+APPNAME = "Bittensor XL"
+APPPATH = "44'/1005'"
 
 else
 define error_message
@@ -116,9 +117,9 @@ dep/%.d: %.c Makefile
 .PHONY: listvariants
 listvariants:
 ifeq ($(TARGET_NAME),TARGET_NANOS)
-	@echo VARIANTS COIN PICA PICA_XL
+	@echo VARIANTS COIN TAO TAO_XL
 else
-	@echo VARIANTS COIN PICA
+	@echo VARIANTS COIN TAO
 endif
 
 .PHONY: version

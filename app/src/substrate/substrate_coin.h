@@ -1,5 +1,6 @@
 /*******************************************************************************
- *  (c) 2019 - 2023 Zondax AG
+ * (c) 2023 Opentensor Technologies 
+ * (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,8 +20,8 @@
 extern "C" {
 #endif
 
-#define COIN_ADDR_TYPE 49
-#define CLA 0xa7
+#define COIN_ADDR_TYPE 13116
+#define CLA 0xb4
 
 #define HDPATH_LEN_DEFAULT 5
 #define HDPATH_0_DEFAULT (0x80000000 | 0x2c)
@@ -53,17 +54,17 @@ typedef enum {
 #define SUPPORTED_TX_VERSION_CURRENT LEDGER_MAJOR_VERSION
 #define SUPPORTED_TX_VERSION_PREVIOUS (LEDGER_MAJOR_VERSION - 1)
 #define SUPPORTED_SPEC_VERSION (LEDGER_MINOR_VERSION + 0)
-#define SUPPORTED_MINIMUM_SPEC_VERSION 10002
+#define SUPPORTED_MINIMUM_SPEC_VERSION 1
 
-#define COIN_AMOUNT_DECIMAL_PLACES 12
+#define COIN_AMOUNT_DECIMAL_PLACES 9
 
-#define COIN_GENESIS_HASH "6811a339673c9daa897944dcdac99c6e2939cc88245ed21951a0a3c9a2be75bc"
-#define COIN_NAME "Picasso"
-#define COIN_TICKER "PICA "
+#define COIN_GENESIS_HASH "6b58f8585fc50f28615fd8795c02f7a543f62b7ff80b0729003e713d6dee777e"
+#define COIN_NAME "Bittensor"
+#define COIN_TICKER "TAO "
 
-#define MENU_MAIN_APP_LINE1 "Picasso"
+#define MENU_MAIN_APP_LINE1 "Bittensor"
 #define MENU_MAIN_APP_LINE2 "Ready"
-#define APPVERSION_LINE1 "Picasso"
+#define APPVERSION_LINE1 "Bittensor"
 #define APPVERSION_LINE2 "v" APPVERSION
 
 #ifdef __cplusplus

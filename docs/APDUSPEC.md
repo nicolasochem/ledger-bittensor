@@ -1,5 +1,5 @@
-# Picasso App
-
+# Bittensor App
+# TODO
 ## General structure
 
 The general structure of commands and responses is as follows:
