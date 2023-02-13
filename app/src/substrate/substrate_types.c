@@ -142,7 +142,7 @@ parser_error_t _readCall(parser_context_t* c, pd_Call_t* v)
 }
 
 parser_error_t _readBalance(parser_context_t* c, pd_Balance_t* v) {
-    GEN_DEF_READARRAY(16)
+    GEN_DEF_READARRAY(8)
 }
 
 parser_error_t _readHash(parser_context_t* c, pd_Hash_t* v) {
