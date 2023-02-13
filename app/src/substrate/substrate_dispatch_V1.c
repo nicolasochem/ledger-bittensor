@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  (c) 2019 - 2023 Zondax AG
+ *  (c) 2019 - 2022 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -88,26 +88,26 @@ parser_error_t _readMethod_V1(
 
     switch (callPrivIdx) {
 
-    case 1536: /* module 6 call 0 */
+    case 2560: /* module 10 call 0 */
         CHECK_ERROR(_readMethod_balances_transfer_V1(c, &method->nested.balances_transfer_V1))
         break;
-    case 1538: /* module 6 call 2 */
+    case 2562: /* module 10 call 2 */
         CHECK_ERROR(_readMethod_balances_force_transfer_V1(c, &method->nested.balances_force_transfer_V1))
         break;
-    case 1539: /* module 6 call 3 */
+    case 2563: /* module 10 call 3 */
         CHECK_ERROR(_readMethod_balances_transfer_keep_alive_V1(c, &method->nested.balances_transfer_keep_alive_V1))
         break;
-    case 1540: /* module 6 call 4 */
+    case 2564: /* module 10 call 4 */
         CHECK_ERROR(_readMethod_balances_transfer_all_V1(c, &method->basic.balances_transfer_all_V1))
         break;
 
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 1537: /* module 6 call 1 */
+    case 2561: /* module 10 call 1 */
         CHECK_ERROR(_readMethod_balances_set_balance_V1(c, &method->nested.balances_set_balance_V1))
         break;
-    case 1541: /* module 6 call 5 */
+    case 2565: /* module 10 call 5 */
         CHECK_ERROR(_readMethod_balances_force_unreserve_V1(c, &method->basic.balances_force_unreserve_V1))
         break;
 #endif
@@ -126,7 +126,7 @@ parser_error_t _readMethod_V1(
 const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
 {
     switch (moduleIdx) {
-    case 6:
+    case 10:
         return STR_MO_BALANCES;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
@@ -144,13 +144,13 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1536: /* module 6 call 0 */
+    case 2560: /* module 10 call 0 */
         return STR_ME_TRANSFER;
-    case 1538: /* module 6 call 2 */
+    case 2562: /* module 10 call 2 */
         return STR_ME_FORCE_TRANSFER;
-    case 1539: /* module 6 call 3 */
+    case 2563: /* module 10 call 3 */
         return STR_ME_TRANSFER_KEEP_ALIVE;
-    case 1540: /* module 6 call 4 */
+    case 2564: /* module 10 call 4 */
         return STR_ME_TRANSFER_ALL;
     default:
         return _getMethod_Name_V1_ParserFull(callPrivIdx);
@@ -165,9 +165,9 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 1537: /* module 6 call 1 */
+    case 2561: /* module 10 call 1 */
         return STR_ME_SET_BALANCE;
-    case 1541: /* module 6 call 5 */
+    case 2565: /* module 10 call 5 */
         return STR_ME_FORCE_UNRESERVE;
 #endif
     default:
@@ -182,20 +182,20 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1536: /* module 6 call 0 */
+    case 2560: /* module 10 call 0 */
         return 2;
-    case 1538: /* module 6 call 2 */
+    case 2562: /* module 10 call 2 */
         return 3;
-    case 1539: /* module 6 call 3 */
+    case 2563: /* module 10 call 3 */
         return 2;
-    case 1540: /* module 6 call 4 */
+    case 2564: /* module 10 call 4 */
         return 2;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 1537: /* module 6 call 1 */
+    case 2561: /* module 10 call 1 */
         return 3;
-    case 1541: /* module 6 call 5 */
+    case 2565: /* module 10 call 5 */
         return 2;
 #endif
     default:
@@ -210,7 +210,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1536: /* module 6 call 0 */
+    case 2560: /* module 10 call 0 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -219,7 +219,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 1538: /* module 6 call 2 */
+    case 2562: /* module 10 call 2 */
         switch (itemIdx) {
         case 0:
             return STR_IT_source;
@@ -230,7 +230,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 1539: /* module 6 call 3 */
+    case 2563: /* module 10 call 3 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -239,7 +239,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 1540: /* module 6 call 4 */
+    case 2564: /* module 10 call 4 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -251,7 +251,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 1537: /* module 6 call 1 */
+    case 2561: /* module 10 call 1 */
         switch (itemIdx) {
         case 0:
             return STR_IT_who;
@@ -262,7 +262,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 1541: /* module 6 call 5 */
+    case 2565: /* module 10 call 5 */
         switch (itemIdx) {
         case 0:
             return STR_IT_who;
@@ -288,7 +288,7 @@ parser_error_t _getMethod_ItemValue_V1(
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1536: /* module 6 call 0 */
+    case 2560: /* module 10 call 0 */
         switch (itemIdx) {
         case 0: /* balances_transfer_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -303,7 +303,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 1538: /* module 6 call 2 */
+    case 2562: /* module 10 call 2 */
         switch (itemIdx) {
         case 0: /* balances_force_transfer_V1 - source */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -323,7 +323,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 1539: /* module 6 call 3 */
+    case 2563: /* module 10 call 3 */
         switch (itemIdx) {
         case 0: /* balances_transfer_keep_alive_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -338,7 +338,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 1540: /* module 6 call 4 */
+    case 2564: /* module 10 call 4 */
         switch (itemIdx) {
         case 0: /* balances_transfer_all_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -356,7 +356,7 @@ parser_error_t _getMethod_ItemValue_V1(
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 1537: /* module 6 call 1 */
+    case 2561: /* module 10 call 1 */
         switch (itemIdx) {
         case 0: /* balances_set_balance_V1 - who */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -376,7 +376,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 1541: /* module 6 call 5 */
+    case 2565: /* module 10 call 5 */
         switch (itemIdx) {
         case 0: /* balances_force_unreserve_V1 - who */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -415,8 +415,8 @@ bool _getMethod_IsNestingSupported_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1540: // Balances:Transfer all
-    case 1541: // Balances:Force unreserve
+    case 2564: // Balances:Transfer all
+    case 2565: // Balances:Force unreserve
         return false;
     default:
         return true;
