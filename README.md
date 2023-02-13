@@ -4,10 +4,7 @@
 
 ---
 
-![zondax_light](docs/zondax_light.png#gh-light-mode-only)
-![zondax_dark](docs/zondax_dark.png#gh-dark-mode-only)
-
-_Please visit our website at [zondax.ch](https://www.zondax.ch)_
+_Forked from [Zondax/ledger-picasso](https://github.com/Zondax/ledger-picasso)_
 
 ---
 
