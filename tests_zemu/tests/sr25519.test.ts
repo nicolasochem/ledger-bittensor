@@ -1,4 +1,5 @@
 /** ******************************************************************************
+ * (c) 2023 Opentensor Technologies 
  * (c) 2018 - 2022 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,7 +35,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const resp = await app.getAddress(0x80000000, 0x80000000, 0x80000000, false, 1)
 
@@ -57,7 +58,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions, model: 'nanos' })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const respRequest = app.getAddress(0x80000000, 0x80000000, 0x80000000, true, 1)
       // Wait until we are not in the main menu
@@ -84,7 +85,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const respRequest = app.getAddress(0x80000000, 0x80000000, 0x80000000, true, 1)
       // Wait until we are not in the main menu
@@ -105,7 +106,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
       const pathAccount = 0x80000000
       const pathChange = 0x80000000
       const pathIndex = 0x80000000
@@ -146,7 +147,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
       const pathAccount = 0x80000000
       const pathChange = 0x80000000
       const pathIndex = 0x80000000
@@ -193,7 +194,7 @@ describe('SR25519', function () {
     const sim = new Zemu(APP_PATH)
     try {
       await sim.start({ ...defaultOptions })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
       const pathAccount = 0x80000000
       const pathChange = 0x80000000
       const pathIndex = 0x80000000

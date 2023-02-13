@@ -1,5 +1,6 @@
 #*******************************************************************************
-#*   (c) 2020 Zondax GmbH
+#*  (c) 2023 Opentensor Technologies  
+#*  (c) 2020 Zondax GmbH
 #*
 #*  Licensed under the Apache License, Version 2.0 (the "License");
 #*  you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
 #*  limitations under the License.
 #********************************************************************************
 cmake_minimum_required(VERSION 3.0)
-project(ledger-kusama VERSION 0.0.0)
+project(ledger-bittensor VERSION 0.0.0)
 enable_testing()
 
 cmake_policy(SET CMP0025 NEW)

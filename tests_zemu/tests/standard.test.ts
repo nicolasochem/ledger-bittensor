@@ -1,4 +1,5 @@
 /** ******************************************************************************
+ * (c) 2023 Opentensor Technologies 
  * (c) 2018 - 2022 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +45,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
       const resp = await app.getVersion()
 
       console.log(resp)
@@ -64,7 +65,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const resp = await app.getAddress(0x80000000, 0x80000000, 0x80000000)
 
@@ -87,7 +88,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const respRequest = app.getAddress(0x80000000, 0x80000000, 0x80000000, true)
       // Wait until we are not in the main menu
@@ -115,7 +116,7 @@ describe('Standard', function () {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
-      const app = newSubstrateApp(sim.getTransport(), 'Picasso')
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
 
       const respRequest = app.getAddress(0x80000000, 0x80000000, 0x80000000, true)
       // Wait until we are not in the main menu

@@ -1,16 +1,16 @@
 {
   "name": "integration-tests",
-  "author": "Zondax GmbH",
+  "author": "Opentensor Technologies",
   "license": "Apache-2.0",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zondax/ledger-kusama"
+    "url": "git+https://github.com/opentensor/ledger-bittensor"
   },
   "keywords": [
-    "Zondax",
+    "Bittensor",
     "Ledger"
   ],
   "scripts": {
@@ -19,7 +19,7 @@
     "testSR25519": "yarn clean && jest tests/sr25519.test.ts"
   },
   "dependencies": {
-    "@zondax/ledger-substrate": "^0.40.3",
+    "@zondax/ledger-substrate": "^0.40.4",
     "@zondax/zemu": "^0.34.0"
   },
   "devDependencies": {
