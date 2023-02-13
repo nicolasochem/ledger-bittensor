@@ -1,4 +1,5 @@
 /*******************************************************************************
+ *  (c) 2023 Opentensor Technologies 
  *  (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +30,7 @@ extern "C" {
 #include "bolos_target.h"
 #endif
 
-#define PD_CALL_BALANCES_V1 6
+#define PD_CALL_BALANCES_V1 10
 
 #define PD_CALL_BALANCES_TRANSFER_ALL_V1 4
 typedef struct {
