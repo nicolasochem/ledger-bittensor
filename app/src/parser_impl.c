@@ -1,4 +1,5 @@
 /*******************************************************************************
+*  (c) 2023 Opentensor Technologies 
 *  (c) 2019 Zondax GmbH
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +39,6 @@ parser_error_t _readTx(parser_context_t *c, parser_tx_t *v) {
     CHECK_ERROR(_readEra(c, &v->era))
     CHECK_ERROR(_readCompactIndex(c, &v->nonce))
     CHECK_ERROR(_readCompactBalance(c, &v->tip))
-    CHECK_ERROR(_readOptionChargeAssetIdOf(c,&v->assetId))
     CHECK_ERROR(_readUInt32(c, &v->specVersion))
     CHECK_ERROR(_readUInt32(c, &v->transactionVersion))
     CHECK_ERROR(_readHash(c, &v->genesisHash))

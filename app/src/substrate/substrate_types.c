@@ -1,4 +1,5 @@
 /*******************************************************************************
+ *  (c) 2023 Opentensor Technologies 
  *  (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -146,16 +147,6 @@ parser_error_t _readBalance(parser_context_t* c, pd_Balance_t* v) {
 
 parser_error_t _readHash(parser_context_t* c, pd_Hash_t* v) {
     GEN_DEF_READARRAY(32)
-}
-
-parser_error_t _readOptionChargeAssetIdOf(parser_context_t* c, pd_OptionChargeAssetIdOf_t* v)
-{
-    CHECK_INPUT()
-    CHECK_ERROR(_readUInt8(c, &v->some))
-    if (v->some > 0) {
-        CHECK_ERROR(_readu32(c, &v->value))
-    }
-    return parser_ok;
 }
 
 ///////////////////////////////////
@@ -385,7 +376,7 @@ parser_error_t _toStringBalance(
     uint8_t bcdOut[100];
     const uint16_t bcdOutLen = sizeof(bcdOut);
 
-    bignumLittleEndian_to_bcd(bcdOut, bcdOutLen, v->_ptr, 16);
+    bignumLittleEndian_to_bcd(bcdOut, bcdOutLen, v->_ptr, 8);
     if (!bignumLittleEndian_bcdprint(bufferUI, sizeof(bufferUI), bcdOut, bcdOutLen)) {
         return parser_unexpected_buffer_end;
     }
@@ -412,24 +403,6 @@ parser_error_t _toStringHash(
     uint8_t pageIdx,
     uint8_t* pageCount) {
     GEN_DEF_TOSTRING_ARRAY(32)
-}
-
-parser_error_t _toStringOptionChargeAssetIdOf(
-    const pd_OptionChargeAssetIdOf_t* v,
-    char* outValue,
-    uint16_t outValueLen,
-    uint8_t pageIdx,
-    uint8_t* pageCount)
-{
-    CLEAN_AND_CHECK()
-
-    *pageCount = 1;
-    if (v->some == 0) {
-        snprintf(outValue, outValueLen, "0");
-        return parser_ok;
-    }
-    CHECK_ERROR(_toStringu32(&v->value, outValue, outValueLen, pageIdx, pageCount));
-    return parser_ok;
 }
 
 ///////////////////////////////////

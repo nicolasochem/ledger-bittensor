@@ -1,4 +1,5 @@
 /*******************************************************************************
+ *  (c) 2023 Opentensor Technologies 
  *  (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +39,6 @@ parser_error_t _readBytes(parser_context_t* c, pd_Bytes_t* v);
 parser_error_t _readCall(parser_context_t* c, pd_Call_t* v);
 parser_error_t _readBalance(parser_context_t* c, pd_Balance_t* v);
 parser_error_t _readHash(parser_context_t* c, pd_Hash_t* v);
-parser_error_t _readOptionChargeAssetIdOf(parser_context_t* c, pd_OptionChargeAssetIdOf_t* v);
 
 // Common toString functions
 
@@ -121,13 +121,6 @@ parser_error_t _toStringBalance(
 
 parser_error_t _toStringHash(
     const pd_Hash_t* v,
-    char* outValue,
-    uint16_t outValueLen,
-    uint8_t pageIdx,
-    uint8_t* pageCount);
-
-parser_error_t _toStringOptionChargeAssetIdOf(
-    const pd_OptionChargeAssetIdOf_t* v,
     char* outValue,
     uint16_t outValueLen,
     uint8_t pageIdx,

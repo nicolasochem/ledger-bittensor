@@ -1,4 +1,5 @@
 /*******************************************************************************
+ *  (c) 2023 Opentensor Technologies 
  *  (c) 2019 - 2023 Zondax AG
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,11 +99,6 @@ typedef struct {
 typedef struct {
     const uint8_t* _ptr;
 } pd_Hash_t;
-
-typedef struct {
-    uint8_t some;
-    uint32_t value;
-} pd_OptionChargeAssetIdOf_t;
 
 ////////////////////////
 // /Common types

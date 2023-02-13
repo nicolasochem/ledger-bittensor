@@ -1,4 +1,5 @@
 /*******************************************************************************
+*  (c) 2023 Opentensor Technologies 
 *  (c) 2019 Zondax GmbH
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,7 +39,6 @@ typedef struct {
     pd_ExtrinsicEra_t era;
     pd_CompactIndex_t nonce;
     pd_CompactBalance_t tip;
-    pd_OptionChargeAssetIdOf_t assetId;
     uint32_t specVersion;
     uint32_t transactionVersion;
 
