@@ -25,6 +25,8 @@ import {
   txBalances_transfer,
   txBalances_transferAll,
   txBalances_transferKeepAlive,
+  txParatensor_addStake,
+  txParatensor_removeStake,
 } from './zemu_blobs'
 
 // @ts-ignore
