@@ -55,6 +55,22 @@ __Z_INLINE parser_error_t _readMethod_balances_transfer_all_V1(
     return parser_ok;
 }
 
+__Z_INLINE parser_error_t _readMethod_paratensor_add_stake_V1(
+    parser_context_t* c, pd_paratensor_add_stake_V1_t * m)
+{
+    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->hotkey))
+    CHECK_ERROR(_readBalance(c, &m->amount_staked ))
+    return parser_ok;
+}
+
+__Z_INLINE parser_error_t _readMethod_paratensor_remove_stake_V1(
+    parser_context_t* c, pd_paratensor_remove_stake_V1_t * m)
+{
+    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->hotkey))
+    CHECK_ERROR(_readBalance(c, &m->amount_unstaked ))
+    return parser_ok;
+}
+
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
@@ -99,6 +115,13 @@ parser_error_t _readMethod_V1(
         break;
     case 2564: /* module 10 call 4 */
         CHECK_ERROR(_readMethod_balances_transfer_all_V1(c, &method->basic.balances_transfer_all_V1))
+        break;
+    
+    case 10498: /* module 41 call 2 */
+        CHECK_ERROR(_readMethod_paratensor_add_stake_V1(c, &method->nested.paratensor_add_stake_V1))
+        break;
+    case 10499: /* module 41 call 3 */
+        CHECK_ERROR(_readMethod_paratensor_remove_stake_V1(c, &method->nested.paratensor_remove_stake_V1))
         break;
 
 #ifdef SUBSTRATE_PARSER_FULL
@@ -152,6 +175,12 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
         return STR_ME_TRANSFER_KEEP_ALIVE;
     case 2564: /* module 10 call 4 */
         return STR_ME_TRANSFER_ALL;
+
+    case 10498: /* module 41 call 2 */
+        return STR_ME_ADD_STAKE;
+    case 10499: /* module 41 call 3 */
+        return STR_ME_REMOVE_STAKE;
+    
     default:
         return _getMethod_Name_V1_ParserFull(callPrivIdx);
     }
@@ -190,6 +219,12 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
         return 2;
     case 2564: /* module 10 call 4 */
         return 2;
+    
+    case 10498: /* module 41 call 2 */
+        return 2;
+    case 10499: /* module 41 call 3 */
+        return 2;
+
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
@@ -245,6 +280,25 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return STR_IT_dest;
         case 1:
             return STR_IT_keep_alive;
+        default:
+            return NULL;
+        }
+
+    case 10498: /* module 41 call 2 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_hotkey;
+        case 1:
+            return STR_IT_amount_staked;
+        default:
+            return NULL;
+        }
+    case 10499: /* module 41 call 3 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_hotkey;
+        case 1:
+            return STR_IT_amount_unstaked;
         default:
             return NULL;
         }
@@ -348,6 +402,37 @@ parser_error_t _getMethod_ItemValue_V1(
         case 1: /* balances_transfer_all_V1 - keep_alive */;
             return _toStringbool(
                 &m->basic.balances_transfer_all_V1.keep_alive,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+    
+    case 10498: /* module 41 call 2 */
+        switch (itemIdx) {
+        case 0: /* paratensor_add_stake_V1 - hotkey */;
+            return _toStringLookupasStaticLookupSource_V1(
+                &m->nested.paratensor_add_stake_V1.hotkey,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* paratensor_add_stake_V1 - amount_staked */;
+            return _toStringBalance(
+                &m->nested.paratensor_add_stake_V1.amount_staked,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+    case 10499: /* module 41 call 3 */
+        switch (itemIdx) {
+        case 0: /* paratensor_remove_stake_V1 - hotkey */;
+            return _toStringLookupasStaticLookupSource_V1(
+                &m->nested.paratensor_remove_stake_V1.hotkey,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* paratensor_remove_stake_V1 - amount_unstaked */;
+            return _toStringBalance(
+                &m->nested.paratensor_remove_stake_V1.amount_unstaked,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:

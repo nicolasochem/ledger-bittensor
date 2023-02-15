@@ -22,13 +22,20 @@ extern "C" {
 // Modules names
 static const char* STR_MO_BALANCES = "Balances";
 
+static const char* STR_MO_PARATENSOR = "Paratensor";
+
 // Methods names
+// === Balances ===
 static const char* STR_ME_TRANSFER = "Transfer";
 static const char* STR_ME_SET_BALANCE = "Set balance";
 static const char* STR_ME_FORCE_TRANSFER = "Force transfer";
 static const char* STR_ME_TRANSFER_KEEP_ALIVE = "Transfer keep alive";
 static const char* STR_ME_TRANSFER_ALL = "Transfer all";
 static const char* STR_ME_FORCE_UNRESERVE = "Force unreserve";
+
+// === Paratensor ===
+static const char* STR_ME_ADD_STAKE = "Add Stake";
+static const char* STR_ME_REMOVE_STAKE = "Remove Stake";
 
 // Items names
 static const char* STR_IT_dest = "Dest";
@@ -38,6 +45,10 @@ static const char* STR_IT_new_free = "New free";
 static const char* STR_IT_new_reserved = "New reserved";
 static const char* STR_IT_source = "Source";
 static const char* STR_IT_keep_alive = "Keep alive";
+
+static const char* STR_IT_hotkey = "Hotkey";
+static const char* STR_IT_amount_staked = "Amount Staked";
+static const char* STR_IT_amount_unstaked = "Amount Unstaked";
 
 #ifdef __cplusplus
 }
