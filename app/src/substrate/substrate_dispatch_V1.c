@@ -58,7 +58,7 @@ __Z_INLINE parser_error_t _readMethod_balances_transfer_all_V1(
 __Z_INLINE parser_error_t _readMethod_paratensor_add_stake_V1(
     parser_context_t* c, pd_paratensor_add_stake_V1_t * m)
 {
-    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->hotkey))
+    CHECK_ERROR(_readStakingAddress32_V1(c, &m->hotkey))
     CHECK_ERROR(_readBalance(c, &m->amount_staked ))
     return parser_ok;
 }
@@ -66,7 +66,7 @@ __Z_INLINE parser_error_t _readMethod_paratensor_add_stake_V1(
 __Z_INLINE parser_error_t _readMethod_paratensor_remove_stake_V1(
     parser_context_t* c, pd_paratensor_remove_stake_V1_t * m)
 {
-    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->hotkey))
+    CHECK_ERROR(_readStakingAddress32_V1(c, &m->hotkey))
     CHECK_ERROR(_readBalance(c, &m->amount_unstaked ))
     return parser_ok;
 }
@@ -413,7 +413,7 @@ parser_error_t _getMethod_ItemValue_V1(
     case 10498: /* module 41 call 2 */
         switch (itemIdx) {
         case 0: /* paratensor_add_stake_V1 - hotkey */;
-            return _toStringLookupasStaticLookupSource_V1(
+            return _toStringAccountId_V1(
                 &m->nested.paratensor_add_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
@@ -428,7 +428,7 @@ parser_error_t _getMethod_ItemValue_V1(
     case 10499: /* module 41 call 3 */
         switch (itemIdx) {
         case 0: /* paratensor_remove_stake_V1 - hotkey */;
-            return _toStringLookupasStaticLookupSource_V1(
+            return _toStringAccountId_V1(
                 &m->nested.paratensor_remove_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);

@@ -44,6 +44,11 @@ typedef struct {
     };
 } pd_LookupasStaticLookupSource_V1_t;
 
+
+typedef struct {
+    const uint8_t* _ptr;
+} pd_StakingAddress32_V1_t;
+
 #ifdef __cplusplus
 }
 #endif

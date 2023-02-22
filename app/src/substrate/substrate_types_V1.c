@@ -60,6 +60,14 @@ parser_error_t _readLookupasStaticLookupSource_V1(parser_context_t* c, pd_Lookup
     return parser_ok;
 }
 
+parser_error_t _readStakingAddress32_V1(parser_context_t* c, pd_StakingAddress32_V1_t* v)
+{
+    CHECK_INPUT()
+    GEN_DEF_READARRAY(32)
+
+    return parser_ok;
+}
+
 ///////////////////////////////////
 ///////////////////////////////////
 ///////////////////////////////////

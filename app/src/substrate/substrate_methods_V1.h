@@ -82,13 +82,13 @@ typedef struct {
 
 #define PD_CALL_PARATENSOR_ADD_STAKE_V1 2
 typedef struct {
-    pd_LookupasStaticLookupSource_V1_t hotkey;
+    pd_StakingAddress32_V1_t hotkey;
     pd_Balance_t amount_staked;
 } pd_paratensor_add_stake_V1_t;
 
 #define PD_CALL_PARATENSOR_REMOVE_STAKE_V1 3
 typedef struct {
-    pd_LookupasStaticLookupSource_V1_t hotkey;
+    pd_StakingAddress32_V1_t hotkey;
     pd_Balance_t amount_unstaked;
 } pd_paratensor_remove_stake_V1_t;
 

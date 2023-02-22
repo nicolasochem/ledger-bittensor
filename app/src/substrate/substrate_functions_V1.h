@@ -29,6 +29,7 @@ extern "C" {
 parser_error_t _readAccountId_V1(parser_context_t* c, pd_AccountId_V1_t* v);
 parser_error_t _readCompactAccountIndex_V1(parser_context_t* c, pd_CompactAccountIndex_V1_t* v);
 parser_error_t _readLookupasStaticLookupSource_V1(parser_context_t* c, pd_LookupasStaticLookupSource_V1_t* v);
+parser_error_t _readStakingAddress32_V1(parser_context_t* c, pd_StakingAddress32_V1_t* v);
 
 // toString functions
 parser_error_t _toStringAccountId_V1(
