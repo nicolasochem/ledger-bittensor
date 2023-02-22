@@ -151,6 +151,8 @@ const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
     switch (moduleIdx) {
     case 10:
         return STR_MO_BALANCES;
+    case 41:
+        return STR_MO_PARATENSOR;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
