@@ -413,7 +413,7 @@ parser_error_t _getMethod_ItemValue_V1(
     case 10498: /* module 41 call 2 */
         switch (itemIdx) {
         case 0: /* paratensor_add_stake_V1 - hotkey */;
-            return _toStringAccountId_V1(
+            return _toStringStakingAddress32_V1(
                 &m->nested.paratensor_add_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
@@ -428,7 +428,7 @@ parser_error_t _getMethod_ItemValue_V1(
     case 10499: /* module 41 call 3 */
         switch (itemIdx) {
         case 0: /* paratensor_remove_stake_V1 - hotkey */;
-            return _toStringAccountId_V1(
+            return _toStringStakingAddress32_V1(
                 &m->nested.paratensor_remove_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);

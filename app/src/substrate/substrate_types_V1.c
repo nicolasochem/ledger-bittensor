@@ -124,3 +124,13 @@ parser_error_t _toStringLookupasStaticLookupSource_V1(
 
     return parser_ok;
 }
+
+parser_error_t _toStringStakingAddress32_V1(
+    const pd_StakingAddress32_V1_t* v,
+    char* outValue,
+    uint16_t outValueLen,
+    uint8_t pageIdx,
+    uint8_t* pageCount)
+{
+    return _toStringPubkeyAsAddress(v->_ptr, outValue, outValueLen, pageIdx, pageCount);
+}
