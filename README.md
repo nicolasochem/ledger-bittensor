@@ -8,7 +8,8 @@ _Forked from [Zondax/ledger-picasso](https://github.com/Zondax/ledger-picasso)_
 
 ---
 
-This project contains the Bittensor app (https://www.bittensor.com/) for Ledger Nano S and X.
+This project contains the Bittensor app (https://www.bittensor.com/) for Ledger Nano S and X.    
+Supporting transfers and staking after the Finney fork.  
 
 - Ledger Nano S/X BOLOS app
 - Specs / Documentation
