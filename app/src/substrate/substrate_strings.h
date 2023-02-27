@@ -34,8 +34,8 @@ static const char* STR_ME_TRANSFER_ALL = "Transfer all";
 static const char* STR_ME_FORCE_UNRESERVE = "Force unreserve";
 
 // === Paratensor ===
-static const char* STR_ME_ADD_STAKE = "Add Stake";
-static const char* STR_ME_REMOVE_STAKE = "Remove Stake";
+static const char* STR_ME_ADD_STAKE = "Add stake";
+static const char* STR_ME_REMOVE_STAKE = "Remove stake";
 
 // Items names
 static const char* STR_IT_dest = "Dest";
