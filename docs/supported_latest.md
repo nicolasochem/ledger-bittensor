@@ -22,12 +22,12 @@
 
 ## Sudo
 
-| Name                  | Nano S | Nano S XL | Nano SP/X | Nesting | Arguments                                           |
-| --------------------- | ------ | --------- | --------- | ------- | --------------------------------------------------- |
-| Sudo                  |        |           |           |         | `Call`call<br/>                                     |
-| Sudo unchecked weight |        |           |           |         | `Call`call<br/>`Weight`weight<br/>                  |
-| Set key               |        |           |           |         | `LookupasStaticLookupSource`new\_<br/>              |
-| Sudo as               |        |           |           |         | `LookupasStaticLookupSource`who<br/>`Call`call<br/> |
+| Name                  | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                           |
+| --------------------- | ------------------ | ------------------ | ------------------ | ------------------ | --------------------------------------------------- |
+| Sudo                  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |                    | `Call`call<br/>                                     |
+| Sudo unchecked weight |                    |                    |                    |                    | `Call`call<br/>`Weight`weight<br/>                  |
+| Set key               | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |                    | `LookupasStaticLookupSource`new\_<br/>              |
+| Sudo as               |                    |                    |                    |                    | `LookupasStaticLookupSource`who<br/>`Call`call<br/> |
 
 ## Balances
 

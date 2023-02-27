@@ -22,12 +22,12 @@
 
 ## Sudo
 
-| Name                  | Nano S | Nano S XL | Nano SP/X | Nesting | Arguments                                           |
-| --------------------- | ------ | --------- | --------- | ------- | --------------------------------------------------- |
-| Sudo                  |        |           |           |         | `Call`call<br/>                                     |
-| Sudo unchecked weight |        |           |           |         | `Call`call<br/>`Weight`weight<br/>                  |
-| Set key               |        |           |           |         | `LookupasStaticLookupSource`new\_<br/>              |
-| Sudo as               |        |           |           |         | `LookupasStaticLookupSource`who<br/>`Call`call<br/> |
+| Name                  | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                           |
+| --------------------- | ------------------ | ------------------ | ------------------ | ------------------ | --------------------------------------------------- |
+| Sudo                  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |                    | `Call`call<br/>                                     |
+| Sudo unchecked weight |                    |                    |                    |                    | `Call`call<br/>`Weight`weight<br/>                  |
+| Set key               |                    |                    |                    |                    | `LookupasStaticLookupSource`new\_<br/>              |
+| Sudo as               |                    |                    |                    |                    | `LookupasStaticLookupSource`who<br/>`Call`call<br/> |
 
 ## Balances
 
@@ -55,7 +55,7 @@
 | Name                | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                                                                               |
 | ------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------------------------------------------------------------------------------------------- |
 | Add stake            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`hotkey<br/>`Balance`stake_amount<br/>                                        |
-| Remove Stake         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`hotkey<br/>`Balance`unstake_amount<br/>      |
+| Remove stake         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`hotkey<br/>`Balance`unstake_amount<br/>      |
 | Become delegate      |        |        |        |        | `LookupasStaticLookupSource`hotkey<br/> |
 | Register             |        |        |        |        | `u16`netuid<br/>`u64`blockNumber<br/>`u64`nonce<br/>`Bytes`work<br/>`LookupasStaticLookupSource`hotkey<br/>`LookupasStaticLookupSource`coldkey<br/> |
 | Serve Axon           |        |        |        |        | `u32`version<br/>`u128`ip<br/>`u16`port<br/>`u8`ipType<br/>`u8`protocol<br/>`u8`placeholder1<br/>`u8`placeholder1<br/> |
