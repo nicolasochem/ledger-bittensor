@@ -20,11 +20,17 @@ extern "C" {
 #endif
 
 // Modules names
+static const char* STR_MO_SUDO = "Sudo";
+
 static const char* STR_MO_BALANCES = "Balances";
 
 static const char* STR_MO_PARATENSOR = "Paratensor";
 
 // Methods names
+// === Sudo ===
+static const char* STR_ME_SUDO = "Sudo";
+static const char* STR_ME_SET_KEY = "Set key";
+
 // === Balances ===
 static const char* STR_ME_TRANSFER = "Transfer";
 static const char* STR_ME_SET_BALANCE = "Set balance";
@@ -36,8 +42,10 @@ static const char* STR_ME_FORCE_UNRESERVE = "Force unreserve";
 // === Paratensor ===
 static const char* STR_ME_ADD_STAKE = "Add stake";
 static const char* STR_ME_REMOVE_STAKE = "Remove stake";
+static const char* STR_ME_SUDO_ADD_NETWORK = "Add network";
 
 // Items names
+static const char* STR_IT_new = "New";
 static const char* STR_IT_dest = "Dest";
 static const char* STR_IT_amount = "Amount";
 static const char* STR_IT_who = "Who";
@@ -49,6 +57,10 @@ static const char* STR_IT_keep_alive = "Keep alive";
 static const char* STR_IT_hotkey = "Hotkey";
 static const char* STR_IT_amount_staked = "Amount staked";
 static const char* STR_IT_amount_unstaked = "Amount unstaked";
+
+static const char* STR_IT_netuid = "Net UID";
+static const char* STR_IT_tempo = "Tempo";
+static const char* STR_IT_modality = "Modality";
 
 #ifdef __cplusplus
 }

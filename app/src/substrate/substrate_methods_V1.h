@@ -30,6 +30,17 @@ extern "C" {
 #include "bolos_target.h"
 #endif
 
+#define PD_CALL_SUDO_V1 4
+
+#define PD_CALL_SUDO_SUDO_V1 0
+typedef struct { // No params
+} pd_sudo_sudo_V1_t;
+
+#define PD_CALL_SUDO_SET_KEY_V1 2
+typedef struct {
+    pd_LookupasStaticLookupSource_V1_t new_;
+} pd_sudo_set_key_V1_t;
+
 #define PD_CALL_BALANCES_V1 10
 
 #define PD_CALL_BALANCES_TRANSFER_ALL_V1 4
@@ -52,6 +63,7 @@ typedef struct {
 
 typedef union {
     pd_balances_transfer_all_V1_t balances_transfer_all_V1;
+    pd_sudo_sudo_V1_t sudo_sudo_V1;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
@@ -92,6 +104,13 @@ typedef struct {
     pd_Balance_t amount_unstaked;
 } pd_paratensor_remove_stake_V1_t;
 
+#define PD_CALL_PARATENSOR_SUDO_ADD_NETWORK 1111
+typedef struct {
+    pd_u16_t netuid;
+    pd_u16_t tempo;
+    pd_u16_t modality;
+} pd_paratensor_sudo_add_network_V1_t;
+
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
@@ -110,6 +129,8 @@ typedef union {
     pd_balances_transfer_keep_alive_V1_t balances_transfer_keep_alive_V1;
     pd_paratensor_add_stake_V1_t paratensor_add_stake_V1;
     pd_paratensor_remove_stake_V1_t paratensor_remove_stake_V1;
+    pd_sudo_set_key_V1_t sudo_set_key_V1;
+    pd_paratensor_sudo_add_network_V1_t paratensor_sudo_add_network_V1;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif

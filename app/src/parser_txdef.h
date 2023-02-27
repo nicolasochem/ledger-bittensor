@@ -46,6 +46,7 @@ typedef struct {
     pd_Hash_t blockHash;
 
     pd_NestCallIdx_t nestCallIdx;
+    bool isSudo;
 } parser_tx_t;
 
 #ifdef __cplusplus

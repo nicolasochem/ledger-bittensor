@@ -29,15 +29,16 @@ void __assert_fail(const char * assertion, const char * file, unsigned int line,
 }
 #endif
 
-#define FIELD_FIXED_TOTAL_COUNT 7
+#define FIELD_FIXED_TOTAL_COUNT 8
 
-#define FIELD_METHOD        0
-#define FIELD_NETWORK       1
-#define FIELD_NONCE         2
-#define FIELD_TIP           3
-#define FIELD_ERA_PHASE     4
-#define FIELD_ERA_PERIOD    5
-#define FIELD_BLOCK_HASH    6
+#define FIELD_SUDO          0
+#define FIELD_METHOD        1
+#define FIELD_NETWORK       2
+#define FIELD_NONCE         3
+#define FIELD_TIP           4
+#define FIELD_ERA_PHASE     5
+#define FIELD_ERA_PERIOD    6
+#define FIELD_BLOCK_HASH    7
 
 #define EXPERT_FIELDS_TOTAL_COUNT 5
 
@@ -70,6 +71,10 @@ bool parser_show_tip(const parser_context_t *ctx){
     return true;
 }
 
+bool parser_show_sudo(const parser_context_t *ctx){
+    return ctx->tx_obj->isSudo; // Don't show sudo if it's false
+}
+
 parser_error_t parser_validate(const parser_context_t *ctx) {
     // Iterate through all items to check that all can be shown and are valid
     uint8_t numItems = 0;
@@ -93,6 +98,9 @@ parser_error_t parser_getNumItems(const parser_context_t *ctx, uint8_t *num_item
 
     uint8_t total = FIELD_FIXED_TOTAL_COUNT;
     if (!parser_show_tip(ctx)) {
+        total -= 1;
+    }
+    if (!parser_show_sudo(ctx)) {
         total -= 1;
     }
     if (!parser_show_expert_fields()) {
@@ -132,6 +140,17 @@ parser_error_t parser_getItem(const parser_context_t *ctx,
     }
 
     parser_error_t err = parser_ok;
+    if (displayIdx == FIELD_SUDO && parser_show_sudo(ctx)) {
+        snprintf(outKey, outKeyLen, "Sudo Origin");
+        snprintf(outVal, outValLen, "%s", ctx->tx_obj->isSudo ? "True" : "False");
+
+        return err;
+    }
+
+    if (!parser_show_sudo(ctx)) {
+        displayIdx++;
+    }
+
     if (displayIdx == FIELD_METHOD) {
         snprintf(outKey, outKeyLen, "%s", _getMethod_ModuleName(ctx->tx_obj->transactionVersion, ctx->tx_obj->callIndex.moduleIdx));
         snprintf(outVal, outValLen, "%s", _getMethod_Name(ctx->tx_obj->transactionVersion,
@@ -144,7 +163,7 @@ parser_error_t parser_getItem(const parser_context_t *ctx,
     uint8_t methodArgCount = _getMethod_NumItems(ctx->tx_obj->transactionVersion,
                                                  ctx->tx_obj->callIndex.moduleIdx,
                                                  ctx->tx_obj->callIndex.idx);
-    uint8_t argIdx = displayIdx - 1;
+    uint8_t argIdx = displayIdx - (FIELD_METHOD + 1); // Start argIdx at 0
 
 
     if (!parser_show_expert_fields()) {
