@@ -74,6 +74,19 @@ public:
     };
 };
 
+class JsonTestsD : public ::testing::TestWithParam<testcase_t> {
+public:
+    struct PrintToStringParamName {
+        template<class ParamType>
+        std::string operator()(const testing::TestParamInfo<ParamType> &info) const {
+            auto p = static_cast<testcase_t>(info.param);
+            std::stringstream ss;
+            ss << p.index << "_" << p.name;
+            return ss.str();
+        }
+    };
+};
+
 // Retrieve testcases from json file
 std::vector<testcase_t> GetJsonTestCases(const std::string &jsonFile) {
     auto answer = std::vector<testcase_t>();
@@ -176,6 +189,15 @@ INSTANTIATE_TEST_SUITE_P
     JsonTestsC::PrintToStringParamName()
 );
 
+INSTANTIATE_TEST_SUITE_P
+
+(
+    JsonTestCasesSudoTxVer,
+    JsonTestsD,
+    ::testing::ValuesIn(GetJsonTestCases("testcases_sudo.json")),
+    JsonTestsD::PrintToStringParamName()
+);
+
 // Parametric test using current runtime:
 TEST_P(JsonTestsA, CheckUIOutput_CurrentTX_Normal) { check_testcase(GetParam(), false); }
 
@@ -187,6 +209,11 @@ TEST_P(JsonTestsB, CheckUIOutput_PreviousTX_Normal) { check_testcase(GetParam(),
 TEST_P(JsonTestsB, CheckUIOutput_PreviousTX_Expert) { check_testcase(GetParam(), true); }
 
 // Parametric test for staking transactions:
-TEST_P(JsonTestsC, CheckUIOutput_CurrentTX_Normal) { check_testcase(GetParam(), false); }
+TEST_P(JsonTestsC, CheckUIOutput_StakingTX_Normal) { check_testcase(GetParam(), false); }
 
 TEST_P(JsonTestsC, CheckUIOutput_StakingTX_Expert) { check_testcase(GetParam(), true); }
+
+// Parametric test for sudo transactions:
+TEST_P(JsonTestsD, CheckUIOutput_SudoTX_Normal) { check_testcase(GetParam(), false); }
+
+TEST_P(JsonTestsD, CheckUIOutput_SudoTX_Expert) { check_testcase(GetParam(), true); }
