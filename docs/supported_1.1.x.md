@@ -24,9 +24,9 @@
 
 | Name                  | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                           |
 | --------------------- | ------------------ | ------------------ | ------------------ | ------------------ | --------------------------------------------------- |
-| Sudo                  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |                    | `Call`call<br/>                                     |
+| Sudo                  | :heavy_check_mark: Partial | :heavy_check_mark: Partial | :heavy_check_mark: Partial |                    | `Call`call<br/>                                     |
 | Sudo unchecked weight |                    |                    |                    |                    | `Call`call<br/>`Weight`weight<br/>                  |
-| Set key               |                    |                    |                    |                    | `LookupasStaticLookupSource`new\_<br/>              |
+| Set key               | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`new\_<br/>              |
 | Sudo as               |                    |                    |                    |                    | `LookupasStaticLookupSource`who<br/>`Call`call<br/> |
 
 ## Balances
@@ -52,8 +52,8 @@
 
 ## Paratensor
 
-| Name                | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                                                                               |
-| ------------------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------------------------------------------------------------------------------------------- |
+| Name                | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                                                                                 |
+| ------------------- | ------------------ | ------------------ | ------------------ | ------------------ | -------------------------------------------------------------------------------------------------------    |
 | Add stake            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`hotkey<br/>`Balance`stake_amount<br/>                                        |
 | Remove stake         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `LookupasStaticLookupSource`hotkey<br/>`Balance`unstake_amount<br/>      |
 | Become delegate      |        |        |        |        | `LookupasStaticLookupSource`hotkey<br/> |
@@ -61,6 +61,7 @@
 | Serve Axon           |        |        |        |        | `u32`version<br/>`u128`ip<br/>`u16`port<br/>`u8`ipType<br/>`u8`protocol<br/>`u8`placeholder1<br/>`u8`placeholder1<br/> |
 | Serve Prometheus     |        |        |        |        |`u32`version<br/>`u128`ip<br/>`u16`port<br/>`u8`ipType<br/> |
 | Set Weights          |        |        |        |        | `u16`netuid<br/>`Vecu16`dests<br/>`Vecu16`weights<br/>`u64`versionKey<br/> |
+| Sudo Add Network     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `u16`netuid<br/>`u16`tempo<br/>`u16`modality<br/> |
                              
 ## Authorship
 
