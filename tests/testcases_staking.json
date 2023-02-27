@@ -7,14 +7,14 @@
       "0 | Paratensor : Add stake",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
-      "2 | Amount Staked : TAO 12345678901.23456789",
+      "2 | Amount staked : TAO 12345678901.23456789",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | Paratensor : Add stake",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
-      "2 | Amount Staked : TAO 12345678901.23456789",
+      "2 | Amount staked : TAO 12345678901.23456789",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
       "5 | Tip : TAO 12345678901.23456789",
@@ -31,14 +31,14 @@
       "0 | Paratensor : Remove stake",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
-      "2 | Amount Unstaked : TAO 12345678901.23456789",
+      "2 | Amount unstaked : TAO 12345678901.23456789",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | Paratensor : Remove stake",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
-      "2 | Amount Unstaked : TAO 12345678901.23456789",
+      "2 | Amount unstaked : TAO 12345678901.23456789",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
       "5 | Tip : TAO 12345678901.23456789",

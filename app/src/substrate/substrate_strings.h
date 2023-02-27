@@ -47,8 +47,8 @@ static const char* STR_IT_source = "Source";
 static const char* STR_IT_keep_alive = "Keep alive";
 
 static const char* STR_IT_hotkey = "Hotkey";
-static const char* STR_IT_amount_staked = "Amount Staked";
-static const char* STR_IT_amount_unstaked = "Amount Unstaked";
+static const char* STR_IT_amount_staked = "Amount staked";
+static const char* STR_IT_amount_unstaked = "Amount unstaked";
 
 #ifdef __cplusplus
 }
