@@ -134,3 +134,61 @@ parser_error_t _toStringStakingAddress32_V1(
 {
     return _toStringPubkeyAsAddress(v->_ptr, outValue, outValueLen, pageIdx, pageCount);
 }
+
+parser_error_t _toStringCodeBytes_V1(
+    const pd_Bytes_t* v,
+    char* outValue,
+    uint16_t outValueLen,
+    uint8_t pageIdx,
+    uint8_t* pageCount)
+{
+    char* outValueEnd = outValue;
+    // === Add '0x' to start ===
+    strncpy(outValue, "0x", 2);
+    outValueEnd += 2;
+
+    // Truncate the code hex if the length is greater than 8 bytes
+    // e.g. 12345678900abcdef -> 0x1234567...abcdef (around 8 bytes long, or ~16 characters) 
+    if ( v->_len <= 8 ) {
+        // Short enough that we don't need to truncate the code hex
+
+        // verify that the output buffer is large enough
+        //   to avoid segfault
+        if ( 2 + (v->_len * 2) + 1 > outValueLen ) { // 0x + 2 chars per byte + null terminator
+            return parser_value_too_many_bytes;
+        }
+        parser_error_t result = _toStringBytes(v, outValueEnd, outValueLen - 2, pageIdx, pageCount);
+        return result;
+    } else {
+        // === Truncate the code hex to be around 16 characters long ===
+        // Only show the first 3 bytes of the code hex and the last 3 bytes
+        // e.g. 12345678900abcdef -> 0x123456...abcdef
+        pd_Bytes_t truncated_v_start = {
+            ._ptr = v->_ptr,
+            ._len = 3
+        };
+
+        pd_Bytes_t truncated_v_end = {
+            ._ptr = v->_ptr + (v->_len - 3),
+            ._len = 3
+        };
+
+        // === Add the first 3 bytes ===
+        parser_error_t truncated_result_start = _toStringBytes(&truncated_v_start, outValueEnd, outValueLen - 2, pageIdx, pageCount);
+        if (truncated_result_start != parser_ok) {
+            return truncated_result_start; // Return error early
+        }
+        outValueEnd += (2 * 3); // 2 characters per byte
+        // === Add the ellipsis ===
+        strncpy(outValueEnd, "...", 3); // Add after the first 3 bytes, 2 characters per byte
+        outValueEnd += 3;
+        // === Add the last 3 bytes ===
+        parser_error_t truncated_result_end = _toStringBytes(&truncated_v_end, outValueEnd, outValueLen - (2 + 2 * 3 + 3), pageIdx, pageCount);
+        if (truncated_result_end != parser_ok) {
+            return truncated_result_end; // Return error early
+        }
+        outValueEnd += (2 * 3); // 2 characters per byte
+        
+        return parser_ok;
+    }
+}

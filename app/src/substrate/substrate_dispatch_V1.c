@@ -71,6 +71,10 @@ __Z_INLINE parser_error_t _readMethod_paratensor_remove_stake_V1(
     return parser_ok;
 }
 
+#ifdef SUBSTRATE_PARSER_FULL
+#ifndef TARGET_NANOS
+#endif
+
 __Z_INLINE parser_error_t _readMethod_paratensor_sudo_add_network_V1(
     parser_context_t* c, pd_paratensor_sudo_add_network_V1_t * m)
 {
@@ -93,11 +97,6 @@ __Z_INLINE parser_error_t _readMethod_sudo_set_key_V1(
     return parser_ok;
 }
 
-
-#ifdef SUBSTRATE_PARSER_FULL
-#ifndef TARGET_NANOS
-#endif
-
 __Z_INLINE parser_error_t _readMethod_balances_set_balance_V1(
     parser_context_t* c, pd_balances_set_balance_V1_t* m)
 {
@@ -115,6 +114,13 @@ __Z_INLINE parser_error_t _readMethod_balances_force_unreserve_V1(
     return parser_ok;
 }
 
+__Z_INLINE parser_error_t _readMethod_system_set_code_V1(
+    parser_context_t* c, pd_system_set_code_V1_t* m)
+{
+    CHECK_ERROR(_readBytes(c, &m->code))
+    return parser_ok;
+}
+
 #endif
 
 parser_error_t _readMethod_V1(
@@ -126,14 +132,6 @@ parser_error_t _readMethod_V1(
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-
-    case 1024: // Module 4, Call 0
-        CHECK_ERROR(_readMethod_sudo_sudo_V1(c, &method->basic.sudo_sudo_V1))
-        break;
-    case 1026:  // Module 4, Call 2
-        CHECK_ERROR(_readMethod_sudo_set_key_V1(c, &method->nested.sudo_set_key_V1))
-        break;
-
     case 2560: /* module 10 call 0 */
         CHECK_ERROR(_readMethod_balances_transfer_V1(c, &method->nested.balances_transfer_V1))
         break;
@@ -153,14 +151,26 @@ parser_error_t _readMethod_V1(
     case 10499: /* module 41 call 3 */
         CHECK_ERROR(_readMethod_paratensor_remove_stake_V1(c, &method->nested.paratensor_remove_stake_V1))
         break;
-    case 10504: /* module 41 call 8 */
-        CHECK_ERROR(_readMethod_paratensor_sudo_add_network_V1(c, &method->nested.paratensor_sudo_add_network_V1))
-        break;
     
-
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
+
+    case 3: // Module 0, Call 3
+        CHECK_ERROR(_readMethod_system_set_code_V1(c, &method->nested.system_set_code_V1))
+        break;
+
+    case 1024: // Module 4, Call 0
+        CHECK_ERROR(_readMethod_sudo_sudo_V1(c, &method->basic.sudo_sudo_V1))
+        break;
+    case 1026:  // Module 4, Call 2
+        CHECK_ERROR(_readMethod_sudo_set_key_V1(c, &method->nested.sudo_set_key_V1))
+        break;
+
+    case 10504: /* module 41 call 8 */
+        CHECK_ERROR(_readMethod_paratensor_sudo_add_network_V1(c, &method->nested.paratensor_sudo_add_network_V1))
+        break;
+
     case 2561: /* module 10 call 1 */
         CHECK_ERROR(_readMethod_balances_set_balance_V1(c, &method->nested.balances_set_balance_V1))
         break;
@@ -183,8 +193,6 @@ parser_error_t _readMethod_V1(
 const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
 {
     switch (moduleIdx) {
-    case 4:
-        return STR_MO_SUDO;
     case 10:
         return STR_MO_BALANCES;
     case 41:
@@ -192,6 +200,11 @@ const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
+    case 0:
+        return STR_MO_SYSTEM;
+    case 4:
+        return STR_MO_SUDO;
+        
 #endif
     default:
         return NULL;
@@ -205,11 +218,6 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1024: // Module 4, Call 0
-        return STR_ME_SUDO;
-    case 1026:  // Module 4, Call 2
-        return STR_ME_SET_KEY;
-
     case 2560: /* module 10 call 0 */
         return STR_ME_TRANSFER;
     case 2562: /* module 10 call 2 */
@@ -223,8 +231,6 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
         return STR_ME_ADD_STAKE;
     case 10499: /* module 41 call 3 */
         return STR_ME_REMOVE_STAKE;
-    case 10504: /* module 41 call 8 */
-        return STR_ME_SUDO_ADD_NETWORK;
     
     default:
         return _getMethod_Name_V1_ParserFull(callPrivIdx);
@@ -239,10 +245,22 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
+    case 3: // Module 0, Call 3
+        return STR_ME_SET_CODE;
+
+    case 1024: // Module 4, Call 0
+        return STR_ME_SUDO;
+    case 1026:  // Module 4, Call 2
+        return STR_ME_SET_KEY;
+    
     case 2561: /* module 10 call 1 */
         return STR_ME_SET_BALANCE;
     case 2565: /* module 10 call 5 */
         return STR_ME_FORCE_UNRESERVE;
+    
+    case 10504: /* module 41 call 8 */
+        return STR_ME_SUDO_ADD_NETWORK;
+
 #endif
     default:
         return NULL;
@@ -256,9 +274,6 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1026: // Module 4, Call 2
-        return 1;
-    
     case 2560: /* module 10 call 0 */
         return 2;
     case 2562: /* module 10 call 2 */
@@ -272,16 +287,23 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
         return 2;
     case 10499: /* module 41 call 3 */
         return 2;
-    case 10504: /* module 41 call 8 */
-        return 3;
 
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
+    case 3: // Module 0, Call 3
+        return 1;
+    
+    case 1026: // Module 4, Call 2
+        return 1;
+    
     case 2561: /* module 10 call 1 */
         return 3;
     case 2565: /* module 10 call 5 */
         return 2;
+    
+    case 10504: /* module 41 call 8 */
+        return 3;
 #endif
     default:
         return 0;
@@ -295,13 +317,6 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1026: // Module 4, Call 2
-        switch (itemIdx) {
-        case 0:
-            return STR_IT_new;
-        default:
-            return NULL;
-        }
     case 2560: /* module 10 call 0 */
         switch (itemIdx) {
         case 0:
@@ -359,20 +374,25 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 10504: /* module 41 call 3 */
-        switch (itemIdx) {
-        case 0:
-            return STR_IT_netuid;
-        case 1:
-            return STR_IT_tempo;
-        case 2:
-            return STR_IT_modality;
-        default:
-            return NULL;
-        }
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
+    case 3: // Module 0, Call 3
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_code;
+        default:
+            return NULL;
+        }
+
+    case 1026: // Module 4, Call 2
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_new;
+        default:
+            return NULL;
+        }
+
     case 2561: /* module 10 call 1 */
         switch (itemIdx) {
         case 0:
@@ -393,6 +413,18 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
+
+    case 10504: /* module 41 call 3 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_netuid;
+        case 1:
+            return STR_IT_tempo;
+        case 2:
+            return STR_IT_modality;
+        default:
+            return NULL;
+        }
 #endif
     default:
         return NULL;
@@ -410,16 +442,6 @@ parser_error_t _getMethod_ItemValue_V1(
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1026: // Module 4, Call 2
-        switch (itemIdx) {
-        case 0: /* sudo_set_key_V1 - new */;
-            return _toStringLookupasStaticLookupSource_V1(
-                &m->nested.sudo_set_key_V1.new_,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        default:
-            return parser_no_data;
-        }
     case 2560: /* module 10 call 0 */
         switch (itemIdx) {
         case 0: /* balances_transfer_V1 - dest */;
@@ -516,29 +538,32 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 10504: /* module 41 call 8 */
+    
+#ifdef SUBSTRATE_PARSER_FULL
+#ifndef TARGET_NANOS
+#endif
+    case 3: // Module 0, Call 0
         switch (itemIdx) {
-        case 0: /* paratensor_sudo_add_network_V1 - netuid */;
-            return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.netuid,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        case 1: /* paratensor_sudo_add_network_V1 - tempo */;
-            return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.tempo,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        case 2: /* paratensor_sudo_add_network_V1 - modality */;
-            return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.modality,
+        case 0: /* system_set_code_V1 - code */;
+            return _toStringCodeBytes_V1 (
+                &m->nested.system_set_code_V1.code,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
             return parser_no_data;
         }
-#ifdef SUBSTRATE_PARSER_FULL
-#ifndef TARGET_NANOS
-#endif
+
+    case 1026: // Module 4, Call 2
+        switch (itemIdx) {
+        case 0: /* sudo_set_key_V1 - new */;
+            return _toStringLookupasStaticLookupSource_V1(
+                &m->nested.sudo_set_key_V1.new_,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+    
     case 2561: /* module 10 call 1 */
         switch (itemIdx) {
         case 0: /* balances_set_balance_V1 - who */;
@@ -569,6 +594,27 @@ parser_error_t _getMethod_ItemValue_V1(
         case 1: /* balances_force_unreserve_V1 - amount */;
             return _toStringBalance(
                 &m->basic.balances_force_unreserve_V1.amount,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+
+    case 10504: /* module 41 call 8 */
+        switch (itemIdx) {
+        case 0: /* paratensor_sudo_add_network_V1 - netuid */;
+            return _toStringu16(
+                &m->nested.paratensor_sudo_add_network_V1.netuid,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* paratensor_sudo_add_network_V1 - tempo */;
+            return _toStringu16(
+                &m->nested.paratensor_sudo_add_network_V1.tempo,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 2: /* paratensor_sudo_add_network_V1 - modality */;
+            return _toStringu16(
+                &m->nested.paratensor_sudo_add_network_V1.modality,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:

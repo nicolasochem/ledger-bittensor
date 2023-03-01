@@ -24,6 +24,8 @@ static const char* STR_MO_SUDO = "Sudo";
 
 static const char* STR_MO_BALANCES = "Balances";
 
+static const char* STR_MO_SYSTEM = "System";
+
 static const char* STR_MO_PARATENSOR = "Paratensor";
 
 // Methods names
@@ -38,6 +40,9 @@ static const char* STR_ME_FORCE_TRANSFER = "Force transfer";
 static const char* STR_ME_TRANSFER_KEEP_ALIVE = "Transfer keep alive";
 static const char* STR_ME_TRANSFER_ALL = "Transfer all";
 static const char* STR_ME_FORCE_UNRESERVE = "Force unreserve";
+
+// === System ===
+static const char* STR_ME_SET_CODE = "Set code";
 
 // === Paratensor ===
 static const char* STR_ME_ADD_STAKE = "Add stake";
@@ -61,6 +66,8 @@ static const char* STR_IT_amount_unstaked = "Amount unstaked";
 static const char* STR_IT_netuid = "Net UID";
 static const char* STR_IT_tempo = "Tempo";
 static const char* STR_IT_modality = "Modality";
+
+static const char* STR_IT_code = "Code";
 
 #ifdef __cplusplus
 }
