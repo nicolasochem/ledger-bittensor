@@ -2,17 +2,17 @@
 
 ## System
 
-| Name                    | Nano S | Nano S XL | Nano SP/X | Nesting | Arguments                         |
-| ----------------------- | ------ | --------- | --------- | ------- | --------------------------------- |
-| Fill block              |        |           |           |         | `Perbill`ratio<br/>               |
-| Remark                  |        |           |           |         | `Bytes`remark<br/>                |
-| Set heap pages          |        |           |           |         | `u64`pages<br/>                   |
-| Set code                |        |           |           |         | `Vecu8`code<br/>                  |
-| Set code without checks |        |           |           |         | `Vecu8`code<br/>                  |
-| Set storage             |        |           |           |         | `VecKeyValue`items<br/>           |
-| Kill storage            |        |           |           |         | `VecKey`keys<br/>                 |
-| Kill prefix             |        |           |           |         | `Key`prefix<br/>`u32`subkeys<br/> |
-| Remark with event       |        |           |           |         | `Bytes`remark<br/>                |
+| Name                    | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                         |
+| ----------------------- | ------------------ | ------------------ | ------------------ | ------------------ | --------------------------------- |
+| Fill block              |                    |                    |                    |                    | `Perbill`ratio<br/>               |
+| Remark                  |                    |                    |                    |                    | `Bytes`remark<br/>                |
+| Set heap pages          |                    |                    |                    |                    | `u64`pages<br/>                   |
+| Set code                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | `Vecu8`code<br/>                  |
+| Set code without checks |                    |                    |                    |                    | `Vecu8`code<br/>                  |
+| Set storage             |                    |                    |                    |                    | `VecKeyValue`items<br/>           |
+| Kill storage            |                    |                    |                    |                    | `VecKey`keys<br/>                 |
+| Kill prefix             |                    |                    |                    |                    | `Key`prefix<br/>`u32`subkeys<br/> |
+| Remark with event       |                    |                    |                    |                    | `Bytes`remark<br/>                |
 
 ## Timestamp
 
