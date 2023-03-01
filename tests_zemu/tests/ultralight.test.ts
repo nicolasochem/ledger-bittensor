@@ -30,6 +30,8 @@ import {
   txSudo_Balances_forceTransfer,
   txSudo_Paratensor_sudoAddNetwork,
   txSudo_setKey,
+  txSudo_System_setCode,
+  txSudo_System_setCode_reallyLong,
 } from './zemu_blobs'
 
 // @ts-ignore
@@ -992,6 +994,190 @@ describe('Ultralight', function () {
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
       await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_paratensor_sudo_add_network_expert`)
+
+      const signatureResponse = await signatureRequest
+      console.log(signatureResponse)
+
+      expect(signatureResponse.return_code).toEqual(0x9000)
+      expect(signatureResponse.error_message).toEqual('No errors')
+
+      // Now verify the signature
+      let prehash = txBlob
+      if (txBlob.length > 256) {
+        const context = blake2bInit(32)
+        blake2bUpdate(context, txBlob)
+        prehash = Buffer.from(blake2bFinal(context))
+      }
+      const valid = ed25519.verify(signatureResponse.signature.slice(1), prehash, pubKey)
+      expect(valid).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.each(models)('sudo system set code normal', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
+      const pathAccount = 0x80000000
+      const pathChange = 0x80000000
+      const pathIndex = 0x80000000
+
+      // Change to expert mode so we can skip fields
+      await sim.clickRight()
+      await sim.clickBoth()
+      await sim.clickLeft()
+
+      const txBlob = Buffer.from(txSudo_System_setCode, 'hex')
+
+      const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
+      const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
+
+      // do not wait here.. we need to navigate
+      const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_system_set_code_normal`)
+
+      const signatureResponse = await signatureRequest
+      console.log(signatureResponse)
+
+      expect(signatureResponse.return_code).toEqual(0x9000)
+      expect(signatureResponse.error_message).toEqual('No errors')
+
+      // Now verify the signature
+      let prehash = txBlob
+      if (txBlob.length > 256) {
+        const context = blake2bInit(32)
+        blake2bUpdate(context, txBlob)
+        prehash = Buffer.from(blake2bFinal(context))
+      }
+      const valid = ed25519.verify(signatureResponse.signature.slice(1), prehash, pubKey)
+      expect(valid).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.each(models)('sudo system set code expert', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
+      const pathAccount = 0x80000000
+      const pathChange = 0x80000000
+      const pathIndex = 0x80000000
+
+      // Change to expert mode so we can skip fields
+      await sim.clickRight()
+      await sim.clickBoth()
+      await sim.clickLeft()
+
+      const txBlob = Buffer.from(txSudo_System_setCode, 'hex')
+
+      const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
+      const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
+
+      // do not wait here.. we need to navigate
+      const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_system_set_code_expert`)
+
+      const signatureResponse = await signatureRequest
+      console.log(signatureResponse)
+
+      expect(signatureResponse.return_code).toEqual(0x9000)
+      expect(signatureResponse.error_message).toEqual('No errors')
+
+      // Now verify the signature
+      let prehash = txBlob
+      if (txBlob.length > 256) {
+        const context = blake2bInit(32)
+        blake2bUpdate(context, txBlob)
+        prehash = Buffer.from(blake2bFinal(context))
+      }
+      const valid = ed25519.verify(signatureResponse.signature.slice(1), prehash, pubKey)
+      expect(valid).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.each(models)('sudo system set code really long normal', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
+      const pathAccount = 0x80000000
+      const pathChange = 0x80000000
+      const pathIndex = 0x80000000
+
+      // Change to expert mode so we can skip fields
+      await sim.clickRight()
+      await sim.clickBoth()
+      await sim.clickLeft()
+
+      const txBlob = Buffer.from(txSudo_System_setCode_reallyLong, 'hex')
+
+      const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
+      const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
+
+      // do not wait here.. we need to navigate
+      const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_system_set_code_really_long_normal`)
+
+      const signatureResponse = await signatureRequest
+      console.log(signatureResponse)
+
+      expect(signatureResponse.return_code).toEqual(0x9000)
+      expect(signatureResponse.error_message).toEqual('No errors')
+
+      // Now verify the signature
+      let prehash = txBlob
+      if (txBlob.length > 256) {
+        const context = blake2bInit(32)
+        blake2bUpdate(context, txBlob)
+        prehash = Buffer.from(blake2bFinal(context))
+      }
+      const valid = ed25519.verify(signatureResponse.signature.slice(1), prehash, pubKey)
+      expect(valid).toEqual(true)
+    } finally {
+      await sim.close()
+    }
+  })
+
+  test.each(models)('sudo system set code really long expert', async function (m) {
+    const sim = new Zemu(m.path)
+    try {
+      await sim.start({ ...defaultOptions, model: m.name })
+      const app = newSubstrateApp(sim.getTransport(), 'Bittensor')
+      const pathAccount = 0x80000000
+      const pathChange = 0x80000000
+      const pathIndex = 0x80000000
+
+      // Change to expert mode so we can skip fields
+      await sim.clickRight()
+      await sim.clickBoth()
+      await sim.clickLeft()
+
+      const txBlob = Buffer.from(txSudo_System_setCode_reallyLong, 'hex')
+
+      const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
+      const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
+
+      // do not wait here.. we need to navigate
+      const signatureRequest = app.sign(pathAccount, pathChange, pathIndex, txBlob)
+
+      // Wait until we are not in the main menu
+      await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_system_set_code_really_long_expert`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)
