@@ -132,23 +132,23 @@ parser_error_t _readMethod_V1(
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 2560: /* module 10 call 0 */
+    case 0x0500: /* module 5 call 0 */
         CHECK_ERROR(_readMethod_balances_transfer_V1(c, &method->nested.balances_transfer_V1))
         break;
-    case 2562: /* module 10 call 2 */
+    case 0x0502: /* module 5 call 2 */
         CHECK_ERROR(_readMethod_balances_force_transfer_V1(c, &method->nested.balances_force_transfer_V1))
         break;
-    case 2563: /* module 10 call 3 */
+    case 0x0503: /* module 5 call 3 */
         CHECK_ERROR(_readMethod_balances_transfer_keep_alive_V1(c, &method->nested.balances_transfer_keep_alive_V1))
         break;
-    case 2564: /* module 10 call 4 */
+    case 0x0504: /* module 5 call 4 */
         CHECK_ERROR(_readMethod_balances_transfer_all_V1(c, &method->basic.balances_transfer_all_V1))
         break;
     
-    case 10498: /* module 41 call 2 */
+    case 0x0802: /* module 8 call 2 */
         CHECK_ERROR(_readMethod_paratensor_add_stake_V1(c, &method->nested.paratensor_add_stake_V1))
         break;
-    case 10499: /* module 41 call 3 */
+    case 0x0803: /* module 8 call 3 */
         CHECK_ERROR(_readMethod_paratensor_remove_stake_V1(c, &method->nested.paratensor_remove_stake_V1))
         break;
     
@@ -156,25 +156,25 @@ parser_error_t _readMethod_V1(
 #ifndef TARGET_NANOS
 #endif
 
-    case 3: // Module 0, Call 3
+    case 0x0002: // Module 0, Call 2
         CHECK_ERROR(_readMethod_system_set_code_V1(c, &method->nested.system_set_code_V1))
         break;
 
-    case 1024: // Module 4, Call 0
+    case 0x0700: // Module 7, Call 0
         CHECK_ERROR(_readMethod_sudo_sudo_V1(c, &method->basic.sudo_sudo_V1))
         break;
-    case 1026:  // Module 4, Call 2
+    case 0x0702:  // Module 7, Call 2
         CHECK_ERROR(_readMethod_sudo_set_key_V1(c, &method->nested.sudo_set_key_V1))
         break;
 
-    case 10504: /* module 41 call 8 */
+    case 0x0809: /* module 8 call 9 */
         CHECK_ERROR(_readMethod_paratensor_sudo_add_network_V1(c, &method->nested.paratensor_sudo_add_network_V1))
         break;
 
-    case 2561: /* module 10 call 1 */
+    case 0x0501: /* module 5 call 2 */
         CHECK_ERROR(_readMethod_balances_set_balance_V1(c, &method->nested.balances_set_balance_V1))
         break;
-    case 2565: /* module 10 call 5 */
+    case 0x0505: /* module 5 call 5 */
         CHECK_ERROR(_readMethod_balances_force_unreserve_V1(c, &method->basic.balances_force_unreserve_V1))
         break;
 #endif
@@ -193,16 +193,16 @@ parser_error_t _readMethod_V1(
 const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
 {
     switch (moduleIdx) {
-    case 10:
+    case 0x05:
         return STR_MO_BALANCES;
-    case 41:
+    case 0x08:
         return STR_MO_PARATENSOR;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 0:
+    case 0x00:
         return STR_MO_SYSTEM;
-    case 4:
+    case 0x07:
         return STR_MO_SUDO;
         
 #endif
@@ -218,18 +218,18 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 2560: /* module 10 call 0 */
+    case 0x0500: /* module 5 call 0 */
         return STR_ME_TRANSFER;
-    case 2562: /* module 10 call 2 */
+    case 0x0502: /* module 5 call 2 */
         return STR_ME_FORCE_TRANSFER;
-    case 2563: /* module 10 call 3 */
+    case 0x0503: /* module 5 call 3 */
         return STR_ME_TRANSFER_KEEP_ALIVE;
-    case 2564: /* module 10 call 4 */
+    case 0x0504: /* module 5 call 4 */
         return STR_ME_TRANSFER_ALL;
 
-    case 10498: /* module 41 call 2 */
+    case 0x0802: /* module 8 call 2 */
         return STR_ME_ADD_STAKE;
-    case 10499: /* module 41 call 3 */
+    case 0x0803: /* module 8 call 3 */
         return STR_ME_REMOVE_STAKE;
     
     default:
@@ -245,20 +245,20 @@ const char* _getMethod_Name_V1_ParserFull(uint16_t callPrivIdx)
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 3: // Module 0, Call 3
+    case 0x0002: // Module 0, Call 2
         return STR_ME_SET_CODE;
 
-    case 1024: // Module 4, Call 0
+    case 0x0700: // Module 7, Call 0
         return STR_ME_SUDO;
-    case 1026:  // Module 4, Call 2
+    case 0x0702:  // Module 7, Call 2
         return STR_ME_SET_KEY;
     
-    case 2561: /* module 10 call 1 */
+    case 0x0501: /* module 5 call 2 */
         return STR_ME_SET_BALANCE;
-    case 2565: /* module 10 call 5 */
+    case 0x0505: /* module 5 call 5 */
         return STR_ME_FORCE_UNRESERVE;
     
-    case 10504: /* module 41 call 8 */
+    case 0x0809: /* module 8 call 9 */
         return STR_ME_SUDO_ADD_NETWORK;
 
 #endif
@@ -274,35 +274,35 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 2560: /* module 10 call 0 */
+    case 0x0500: /* module 5 call 0 */
         return 2;
-    case 2562: /* module 10 call 2 */
+    case 0x0502: /* module 5 call 2 */
         return 3;
-    case 2563: /* module 10 call 3 */
+    case 0x0503: /* module 5 call 3 */
         return 2;
-    case 2564: /* module 10 call 4 */
+    case 0x0504: /* module 5 call 4 */
         return 2;
     
-    case 10498: /* module 41 call 2 */
+    case 0x0802: /* module 8 call 2 */
         return 2;
-    case 10499: /* module 41 call 3 */
+    case 0x0803: /* module 8 call 3 */
         return 2;
 
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 3: // Module 0, Call 3
+    case 0x0002: // Module 0, Call 2
         return 1;
     
-    case 1026: // Module 4, Call 2
+    case 0x0702: // Module 7, Call 2
         return 1;
     
-    case 2561: /* module 10 call 1 */
+    case 0x0501: /* module 5 call 2 */
         return 3;
-    case 2565: /* module 10 call 5 */
+    case 0x0505: /* module 5 call 5 */
         return 2;
     
-    case 10504: /* module 41 call 8 */
+    case 0x0809: /* module 8 call 9 */
         return 3;
 #endif
     default:
@@ -317,7 +317,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 2560: /* module 10 call 0 */
+    case 0x0500: /* module 5 call 0 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -326,7 +326,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 2562: /* module 10 call 2 */
+    case 0x0502: /* module 5 call 2 */
         switch (itemIdx) {
         case 0:
             return STR_IT_source;
@@ -337,7 +337,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 2563: /* module 10 call 3 */
+    case 0x0503: /* module 5 call 3 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -346,7 +346,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 2564: /* module 10 call 4 */
+    case 0x0504: /* module 5 call 4 */
         switch (itemIdx) {
         case 0:
             return STR_IT_dest;
@@ -356,7 +356,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return NULL;
         }
 
-    case 10498: /* module 41 call 2 */
+    case 0x0802: /* module 8 call 2 */
         switch (itemIdx) {
         case 0:
             return STR_IT_hotkey;
@@ -365,7 +365,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 10499: /* module 41 call 3 */
+    case 0x0803: /* module 8 call 3 */
         switch (itemIdx) {
         case 0:
             return STR_IT_hotkey;
@@ -377,7 +377,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 3: // Module 0, Call 3
+    case 0x0002: // Module 0, Call 2
         switch (itemIdx) {
         case 0:
             return STR_IT_code;
@@ -385,7 +385,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return NULL;
         }
 
-    case 1026: // Module 4, Call 2
+    case 0x0702: // Module 7, Call 2
         switch (itemIdx) {
         case 0:
             return STR_IT_new;
@@ -393,7 +393,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return NULL;
         }
 
-    case 2561: /* module 10 call 1 */
+    case 0x0501: /* module 5 call 2 */
         switch (itemIdx) {
         case 0:
             return STR_IT_who;
@@ -404,7 +404,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 2565: /* module 10 call 5 */
+    case 0x0505: /* module 5 call 5 */
         switch (itemIdx) {
         case 0:
             return STR_IT_who;
@@ -414,7 +414,7 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return NULL;
         }
 
-    case 10504: /* module 41 call 3 */
+    case 0x0809: /* module 8 call 9 */
         switch (itemIdx) {
         case 0:
             return STR_IT_netuid;
@@ -442,7 +442,7 @@ parser_error_t _getMethod_ItemValue_V1(
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 2560: /* module 10 call 0 */
+    case 0x0500: /* module 5 call 0 */
         switch (itemIdx) {
         case 0: /* balances_transfer_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -457,7 +457,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 2562: /* module 10 call 2 */
+    case 0x0502: /* module 5 call 2 */
         switch (itemIdx) {
         case 0: /* balances_force_transfer_V1 - source */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -477,7 +477,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 2563: /* module 10 call 3 */
+    case 0x0503: /* module 5 call 3 */
         switch (itemIdx) {
         case 0: /* balances_transfer_keep_alive_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -492,7 +492,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 2564: /* module 10 call 4 */
+    case 0x0504: /* module 5 call 4 */
         switch (itemIdx) {
         case 0: /* balances_transfer_all_V1 - dest */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -508,7 +508,7 @@ parser_error_t _getMethod_ItemValue_V1(
             return parser_no_data;
         }
     
-    case 10498: /* module 41 call 2 */
+    case 0x0802: /* module 8 call 2 */
         switch (itemIdx) {
         case 0: /* paratensor_add_stake_V1 - hotkey */;
             return _toStringStakingAddress32_V1(
@@ -523,7 +523,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 10499: /* module 41 call 3 */
+    case 0x0803: /* module 8 call 3 */
         switch (itemIdx) {
         case 0: /* paratensor_remove_stake_V1 - hotkey */;
             return _toStringStakingAddress32_V1(
@@ -542,7 +542,7 @@ parser_error_t _getMethod_ItemValue_V1(
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 3: // Module 0, Call 0
+    case 0x0002: // Module 0, Call 0
         switch (itemIdx) {
         case 0: /* system_set_code_V1 - code */;
             return _toStringCodeBytes_V1 (
@@ -553,7 +553,7 @@ parser_error_t _getMethod_ItemValue_V1(
             return parser_no_data;
         }
 
-    case 1026: // Module 4, Call 2
+    case 0x0702: // Module 7, Call 2
         switch (itemIdx) {
         case 0: /* sudo_set_key_V1 - new */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -564,7 +564,7 @@ parser_error_t _getMethod_ItemValue_V1(
             return parser_no_data;
         }
     
-    case 2561: /* module 10 call 1 */
+    case 0x0501: /* module 5 call 2 */
         switch (itemIdx) {
         case 0: /* balances_set_balance_V1 - who */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -584,7 +584,7 @@ parser_error_t _getMethod_ItemValue_V1(
         default:
             return parser_no_data;
         }
-    case 2565: /* module 10 call 5 */
+    case 0x0505: /* module 5 call 5 */
         switch (itemIdx) {
         case 0: /* balances_force_unreserve_V1 - who */;
             return _toStringLookupasStaticLookupSource_V1(
@@ -600,7 +600,7 @@ parser_error_t _getMethod_ItemValue_V1(
             return parser_no_data;
         }
 
-    case 10504: /* module 41 call 8 */
+    case 0x0809: /* module 8 call 9 */
         switch (itemIdx) {
         case 0: /* paratensor_sudo_add_network_V1 - netuid */;
             return _toStringu16(
@@ -644,9 +644,9 @@ bool _getMethod_IsNestingSupported_V1(uint8_t moduleIdx, uint8_t callIdx)
     uint16_t callPrivIdx = ((uint16_t)moduleIdx << 8u) + callIdx;
 
     switch (callPrivIdx) {
-    case 1024: // Sudo:Sudo
-    case 2564: // Balances:Transfer all
-    case 2565: // Balances:Force unreserve
+    case 0x0700: // Sudo:Sudo
+    case 0x0504: // Balances:Transfer all
+    case 0x0505: // Balances:Force unreserve
         return false;
     default:
         return true;

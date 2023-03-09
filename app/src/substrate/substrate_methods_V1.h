@@ -36,12 +36,12 @@ extern "C" {
 
 #define PD_CALL_SYSTEM_V1 0
 
-#define PD_CALL_SYSTEM_SET_CODE_V1 3
+#define PD_CALL_SYSTEM_SET_CODE_V1 2
 typedef struct {
     pd_Bytes_t code;
 } pd_system_set_code_V1_t;
 
-#define PD_CALL_SUDO_V1 4
+#define PD_CALL_SUDO_V1 7
 
 #define PD_CALL_SUDO_SUDO_V1 0
 typedef struct { // No params
@@ -54,7 +54,7 @@ typedef struct {
 
 #endif
 
-#define PD_CALL_BALANCES_V1 10
+#define PD_CALL_BALANCES_V1 5
 
 #define PD_CALL_BALANCES_TRANSFER_ALL_V1 4
 typedef struct {
@@ -103,7 +103,7 @@ typedef struct {
     pd_CompactBalance_t amount;
 } pd_balances_transfer_keep_alive_V1_t;
 
-#define PD_CALL_PARATENSOR_V1 41
+#define PD_CALL_PARATENSOR_V1 8
 
 #define PD_CALL_PARATENSOR_ADD_STAKE_V1 2
 typedef struct {
@@ -121,7 +121,7 @@ typedef struct {
 #ifndef TARGET_NANOS
 #endif
 
-#define PD_CALL_PARATENSOR_SUDO_ADD_NETWORK 1111
+#define PD_CALL_PARATENSOR_SUDO_ADD_NETWORK 9
 typedef struct {
     pd_u16_t netuid;
     pd_u16_t tempo;
