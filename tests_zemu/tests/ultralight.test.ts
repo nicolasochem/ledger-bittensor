@@ -25,14 +25,14 @@ import {
   txBalances_transfer,
   txBalances_transferAll,
   txBalances_transferKeepAlive,
-  txParatensor_addStake,
-  txParatensor_removeStake,
+  txSubtensor_Module_addStake,
+  txSubtensor_Module_removeStake,
   txSudo_Balances_forceTransfer,
-  txSudo_Paratensor_sudoAddNetwork,
+  txSudo_Subtensor_Module_sudoAddNetwork,
   txSudo_setKey,
   txSudo_System_setCode,
   txSudo_System_setCode_reallyLong,
-  txParatensor_burnedRegister,
+  txSubtensor_Module_burnedRegister,
 } from './zemu_blobs'
 
 // @ts-ignore
@@ -577,7 +577,7 @@ describe('Ultralight', function () {
       const pathChange = 0x80000000
       const pathIndex = 0x80000000
 
-      const txBlob = Buffer.from(txParatensor_addStake, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_addStake, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -622,7 +622,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txParatensor_addStake, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_addStake, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -663,7 +663,7 @@ describe('Ultralight', function () {
       const pathChange = 0x80000000
       const pathIndex = 0x80000000
 
-      const txBlob = Buffer.from(txParatensor_removeStake, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_removeStake, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -708,7 +708,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txParatensor_removeStake, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_removeStake, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -924,7 +924,7 @@ describe('Ultralight', function () {
     }
   })
 
-  test.each(models)('sudo paratensor sudo add network normal', async function (m) {
+  test.each(models)('sudo subtensor module sudo add network normal', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
@@ -938,7 +938,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txSudo_Paratensor_sudoAddNetwork, 'hex')
+      const txBlob = Buffer.from(txSudo_Subtensor_Module_sudoAddNetwork, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -948,7 +948,7 @@ describe('Ultralight', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_paratensor_sudo_add_network_normal`)
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_subtensor_module_sudo_add_network_normal`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)
@@ -970,7 +970,7 @@ describe('Ultralight', function () {
     }
   })
 
-  test.each(models)('sudo paratensor sudo add network expert', async function (m) {
+  test.each(models)('sudo subtensor module sudo add network expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
@@ -984,7 +984,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txSudo_Paratensor_sudoAddNetwork, 'hex')
+      const txBlob = Buffer.from(txSudo_Subtensor_Module_sudoAddNetwork, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -994,7 +994,7 @@ describe('Ultralight', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_paratensor_sudo_add_network_expert`)
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-sudo_subtensor_module_sudo_add_network_expert`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)
@@ -1200,7 +1200,7 @@ describe('Ultralight', function () {
     }
   })
 
-  test.each(models)('paratensor burned register normal', async function (m) {
+  test.each(models)('subtensor module burned register normal', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
@@ -1214,7 +1214,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txParatensor_burnedRegister, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_burnedRegister, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -1224,7 +1224,7 @@ describe('Ultralight', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-paratensor_burned_register_normal`)
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-subtensor_module_burned_register_normal`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)
@@ -1246,7 +1246,7 @@ describe('Ultralight', function () {
     }
   })
 
-  test.each(models)('paratensor burned register expert', async function (m) {
+  test.each(models)('subtensor module burned register expert', async function (m) {
     const sim = new Zemu(m.path)
     try {
       await sim.start({ ...defaultOptions, model: m.name })
@@ -1260,7 +1260,7 @@ describe('Ultralight', function () {
       await sim.clickBoth()
       await sim.clickLeft()
 
-      const txBlob = Buffer.from(txParatensor_burnedRegister, 'hex')
+      const txBlob = Buffer.from(txSubtensor_Module_burnedRegister, 'hex')
 
       const responseAddr = await app.getAddress(pathAccount, pathChange, pathIndex)
       const pubKey = Buffer.from(responseAddr.pubKey, 'hex')
@@ -1270,7 +1270,7 @@ describe('Ultralight', function () {
 
       // Wait until we are not in the main menu
       await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot())
-      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-paratensor_burned_register_expert`)
+      await sim.compareSnapshotsAndApprove('.', `${m.prefix.toLowerCase()}-subtensor_module_burned_register_expert`)
 
       const signatureResponse = await signatureRequest
       console.log(signatureResponse)

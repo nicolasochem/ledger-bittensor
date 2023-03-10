@@ -1,17 +1,17 @@
 [
   {
     "index": 1,
-    "name": "Paratensor_Burned_Register",
+    "name": "Subtensor_Module_Burned_Register",
     "blob": "080700003132333435363738393031323334353637383930313233343536373839303132d6038d2413d20a1feb8ca954ab01000000010000003c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d03c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d0",
     "output": [
-      "0 | Paratensor : Burned register",
+      "0 | Subtensor Module : Burned register",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
       "2 | Netuid : 0",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
-      "0 | Paratensor : Burned register",
+      "0 | Subtensor Module : Burned register",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
       "2 | Netuid : 0",
@@ -26,17 +26,17 @@
   },
   {
     "index": 2,
-    "name": "Paratensor_Burned_Register",
+    "name": "Subtensor_Module_Burned_Register",
     "blob": "080701003132333435363738393031323334353637383930313233343536373839303132d6038d2413d20a1feb8ca954ab01000000010000003c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d03c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d0",
     "output": [
-      "0 | Paratensor : Burned register",
+      "0 | Subtensor Module : Burned register",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
       "2 | Netuid : 1",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
-      "0 | Paratensor : Burned register",
+      "0 | Subtensor Module : Burned register",
       "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
       "1 | Hotkey [2/2] : iQj71naPZd9",
       "2 | Netuid : 1",

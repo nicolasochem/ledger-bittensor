@@ -103,30 +103,36 @@ typedef struct {
     pd_CompactBalance_t amount;
 } pd_balances_transfer_keep_alive_V1_t;
 
-#define PD_CALL_PARATENSOR_V1 8
+#define PD_CALL_SUBTENSOR_MODULE_V1 8
 
-#define PD_CALL_PARATENSOR_ADD_STAKE_V1 2
+#define PD_CALL_SUBTENSOR_MODULE_ADD_STAKE_V1 2
 typedef struct {
     pd_StakingAddress32_V1_t hotkey;
     pd_Balance_t amount_staked;
-} pd_paratensor_add_stake_V1_t;
+} pd_subtensor_module_add_stake_V1_t;
 
-#define PD_CALL_PARATENSOR_REMOVE_STAKE_V1 3
+#define PD_CALL_SUBTENSOR_MODULE_REMOVE_STAKE_V1 3
 typedef struct {
     pd_StakingAddress32_V1_t hotkey;
     pd_Balance_t amount_unstaked;
-} pd_paratensor_remove_stake_V1_t;
+} pd_subtensor_module_remove_stake_V1_t;
+
+#define PD_CALL_SUBTENSOR_MODULE_REMOVE_STAKE_V1 7
+typedef struct {
+    pd_u16_t netuid;
+    pd_StakingAddress32_V1_t hotkey;
+} pd_subtensor_module_burned_register_V1_t;
 
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
 
-#define PD_CALL_PARATENSOR_SUDO_ADD_NETWORK 9
+#define PD_CALL_SUBTENSOR_MODULE_SUDO_ADD_NETWORK 9
 typedef struct {
     pd_u16_t netuid;
     pd_u16_t tempo;
     pd_u16_t modality;
-} pd_paratensor_sudo_add_network_V1_t;
+} pd_subtensor_module_sudo_add_network_V1_t;
 
 #define PD_CALL_BALANCES_SET_BALANCE_V1 1
 typedef struct {
@@ -140,14 +146,15 @@ typedef struct {
 typedef union {
     pd_balances_transfer_V1_t balances_transfer_V1;
     pd_balances_transfer_keep_alive_V1_t balances_transfer_keep_alive_V1;
-    pd_paratensor_add_stake_V1_t paratensor_add_stake_V1;
-    pd_paratensor_remove_stake_V1_t paratensor_remove_stake_V1;
+    pd_subtensor_module_add_stake_V1_t subtensor_module_add_stake_V1;
+    pd_subtensor_module_remove_stake_V1_t subtensor_module_remove_stake_V1;
+    pd_subtensor_module_burned_register_V1_t subtensor_module_burned_register_V1;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
     pd_system_set_code_V1_t system_set_code_V1;
     pd_sudo_set_key_V1_t sudo_set_key_V1;
-    pd_paratensor_sudo_add_network_V1_t paratensor_sudo_add_network_V1;
+    pd_subtensor_module_sudo_add_network_V1_t subtensor_module_sudo_add_network_V1;
     pd_balances_force_transfer_V1_t balances_force_transfer_V1;
     pd_balances_set_balance_V1_t balances_set_balance_V1;
 #endif

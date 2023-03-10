@@ -50,7 +50,7 @@
 | Authorize upgrade        |        |           |           |         | `Hash`code_hash<br/>             |
 | Enact authorized upgrade |        |           |           |         | `Vecu8`code<br/>                 |
 
-## Paratensor
+## Subtensor Module
 
 | Name                | Nano S             | Nano S XL          | Nano SP/X          | Nesting            | Arguments                                                                                                 |
 | ------------------- | ------------------ | ------------------ | ------------------ | ------------------ | -------------------------------------------------------------------------------------------------------    |

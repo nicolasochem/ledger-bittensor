@@ -26,7 +26,7 @@ static const char* STR_MO_BALANCES = "Balances";
 
 static const char* STR_MO_SYSTEM = "System";
 
-static const char* STR_MO_PARATENSOR = "Paratensor";
+static const char* STR_MO_SUBTENSOR_MODULE = "SubtensorModule";
 
 // Methods names
 // === Sudo ===
@@ -44,10 +44,11 @@ static const char* STR_ME_FORCE_UNRESERVE = "Force unreserve";
 // === System ===
 static const char* STR_ME_SET_CODE = "Set code";
 
-// === Paratensor ===
+// === Subtensor Module ===
 static const char* STR_ME_ADD_STAKE = "Add stake";
 static const char* STR_ME_REMOVE_STAKE = "Remove stake";
 static const char* STR_ME_SUDO_ADD_NETWORK = "Add network";
+static const char* STR_ME_BURNED_REGISTER = "Burned register";
 
 // Items names
 static const char* STR_IT_new = "New";

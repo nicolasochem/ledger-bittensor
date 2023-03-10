@@ -26,11 +26,11 @@
   },
   {
     "index": 2,
-    "name": "Sudo_Paratensor_Add_Network",
+    "name": "Sudo_Subtensor_Module_Add_Network",
     "blob": "0700080900000a000000d6038d2413d20a1feb8ca954ab01000000010000003c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d03c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d0",
     "output": [
       "0 | Sudo Origin : True",
-      "1 | Paratensor : Add network",
+      "1 | Subtensor Module : Add network",
       "2 | Net UID : 0",
       "3 | Tempo : 10",
       "4 | Modality : 0",
@@ -38,7 +38,7 @@
     ],
     "output_expert": [
       "0 | Sudo Origin : True",
-      "1 | Paratensor : Add network",
+      "1 | Subtensor Module : Add network",
       "2 | Net UID : 0",
       "3 | Tempo : 10",
       "4 | Modality : 0",

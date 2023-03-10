@@ -55,19 +55,27 @@ __Z_INLINE parser_error_t _readMethod_balances_transfer_all_V1(
     return parser_ok;
 }
 
-__Z_INLINE parser_error_t _readMethod_paratensor_add_stake_V1(
-    parser_context_t* c, pd_paratensor_add_stake_V1_t * m)
+__Z_INLINE parser_error_t _readMethod_subtensor_module_add_stake_V1(
+    parser_context_t* c, pd_subtensor_module_add_stake_V1_t * m)
 {
     CHECK_ERROR(_readStakingAddress32_V1(c, &m->hotkey))
     CHECK_ERROR(_readBalance(c, &m->amount_staked ))
     return parser_ok;
 }
 
-__Z_INLINE parser_error_t _readMethod_paratensor_remove_stake_V1(
-    parser_context_t* c, pd_paratensor_remove_stake_V1_t * m)
+__Z_INLINE parser_error_t _readMethod_subtensor_module_remove_stake_V1(
+    parser_context_t* c, pd_subtensor_module_remove_stake_V1_t * m)
 {
     CHECK_ERROR(_readStakingAddress32_V1(c, &m->hotkey))
     CHECK_ERROR(_readBalance(c, &m->amount_unstaked ))
+    return parser_ok;
+}
+
+__Z_INLINE parser_error_t _readMethod_subtensor_module_burned_register_V1(
+    parser_context_t* c, pd_subtensor_module_burned_register_V1_t * m)
+{
+    CHECK_ERROR(_readu16(c, &m->netuid ))
+    CHECK_ERROR(_readStakingAddress32_V1(c, &m->hotkey))
     return parser_ok;
 }
 
@@ -75,8 +83,8 @@ __Z_INLINE parser_error_t _readMethod_paratensor_remove_stake_V1(
 #ifndef TARGET_NANOS
 #endif
 
-__Z_INLINE parser_error_t _readMethod_paratensor_sudo_add_network_V1(
-    parser_context_t* c, pd_paratensor_sudo_add_network_V1_t * m)
+__Z_INLINE parser_error_t _readMethod_subtensor_module_sudo_add_network_V1(
+    parser_context_t* c, pd_subtensor_module_sudo_add_network_V1_t * m)
 {
     CHECK_ERROR(_readu16(c, &m->netuid ))
     CHECK_ERROR(_readu16(c, &m->tempo ))
@@ -146,10 +154,13 @@ parser_error_t _readMethod_V1(
         break;
     
     case 0x0802: /* module 8 call 2 */
-        CHECK_ERROR(_readMethod_paratensor_add_stake_V1(c, &method->nested.paratensor_add_stake_V1))
+        CHECK_ERROR(_readMethod_subtensor_module_add_stake_V1(c, &method->nested.subtensor_module_add_stake_V1))
         break;
     case 0x0803: /* module 8 call 3 */
-        CHECK_ERROR(_readMethod_paratensor_remove_stake_V1(c, &method->nested.paratensor_remove_stake_V1))
+        CHECK_ERROR(_readMethod_subtensor_module_remove_stake_V1(c, &method->nested.subtensor_module_remove_stake_V1))
+        break;
+    case 0x0807: /* module 8 call 7 */
+        CHECK_ERROR(_readMethod_subtensor_module_burned_register_V1(c, &method->nested.subtensor_module_burned_register_V1))
         break;
     
 #ifdef SUBSTRATE_PARSER_FULL
@@ -168,7 +179,7 @@ parser_error_t _readMethod_V1(
         break;
 
     case 0x0809: /* module 8 call 9 */
-        CHECK_ERROR(_readMethod_paratensor_sudo_add_network_V1(c, &method->nested.paratensor_sudo_add_network_V1))
+        CHECK_ERROR(_readMethod_subtensor_module_sudo_add_network_V1(c, &method->nested.subtensor_module_sudo_add_network_V1))
         break;
 
     case 0x0501: /* module 5 call 2 */
@@ -196,7 +207,7 @@ const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
     case 0x05:
         return STR_MO_BALANCES;
     case 0x08:
-        return STR_MO_PARATENSOR;
+        return STR_MO_SUBTENSOR_MODULE;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
@@ -231,6 +242,8 @@ const char* _getMethod_Name_V1(uint8_t moduleIdx, uint8_t callIdx)
         return STR_ME_ADD_STAKE;
     case 0x0803: /* module 8 call 3 */
         return STR_ME_REMOVE_STAKE;
+    case 0x0807: /* module 8 call 7 */
+        return STR_ME_BURNED_REGISTER;
     
     default:
         return _getMethod_Name_V1_ParserFull(callPrivIdx);
@@ -286,6 +299,8 @@ uint8_t _getMethod_NumItems_V1(uint8_t moduleIdx, uint8_t callIdx)
     case 0x0802: /* module 8 call 2 */
         return 2;
     case 0x0803: /* module 8 call 3 */
+        return 2;
+    case 0x0807: /* module 8 call 3 */
         return 2;
 
 #ifdef SUBSTRATE_PARSER_FULL
@@ -371,6 +386,15 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
             return STR_IT_hotkey;
         case 1:
             return STR_IT_amount_unstaked;
+        default:
+            return NULL;
+        }
+    case 0x0807: /* module 8 call 7 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_netuid;
+        case 1:
+            return STR_IT_hotkey;
         default:
             return NULL;
         }
@@ -510,14 +534,14 @@ parser_error_t _getMethod_ItemValue_V1(
     
     case 0x0802: /* module 8 call 2 */
         switch (itemIdx) {
-        case 0: /* paratensor_add_stake_V1 - hotkey */;
+        case 0: /* subtensor_module_add_stake_V1 - hotkey */;
             return _toStringStakingAddress32_V1(
-                &m->nested.paratensor_add_stake_V1.hotkey,
+                &m->nested.subtensor_module_add_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
-        case 1: /* paratensor_add_stake_V1 - amount_staked */;
+        case 1: /* subtensor_module_add_stake_V1 - amount_staked */;
             return _toStringBalance(
-                &m->nested.paratensor_add_stake_V1.amount_staked,
+                &m->nested.subtensor_module_add_stake_V1.amount_staked,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
@@ -525,14 +549,30 @@ parser_error_t _getMethod_ItemValue_V1(
         }
     case 0x0803: /* module 8 call 3 */
         switch (itemIdx) {
-        case 0: /* paratensor_remove_stake_V1 - hotkey */;
+        case 0: /* subtensor_module_remove_stake_V1 - hotkey */;
             return _toStringStakingAddress32_V1(
-                &m->nested.paratensor_remove_stake_V1.hotkey,
+                &m->nested.subtensor_module_remove_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
-        case 1: /* paratensor_remove_stake_V1 - amount_unstaked */;
+        case 1: /* subtensor_module_remove_stake_V1 - amount_unstaked */;
             return _toStringBalance(
-                &m->nested.paratensor_remove_stake_V1.amount_unstaked,
+                &m->nested.subtensor_module_remove_stake_V1.amount_unstaked,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+    
+    case 0x0807: /* module 8 call 7 */
+        switch (itemIdx) {
+        case 0: /* subtensor_module_burned_register_V1 - netuid */;
+            return _toStringu16(
+                &m->nested.subtensor_module_sudo_add_network_V1.netuid,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* subtensor_module_burned_register_V1 - hotkey */;
+            return _toStringStakingAddress32_V1(
+                &m->nested.subtensor_module_remove_stake_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
@@ -602,19 +642,19 @@ parser_error_t _getMethod_ItemValue_V1(
 
     case 0x0809: /* module 8 call 9 */
         switch (itemIdx) {
-        case 0: /* paratensor_sudo_add_network_V1 - netuid */;
+        case 0: /* subtensor_module_sudo_add_network_V1 - netuid */;
             return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.netuid,
+                &m->nested.subtensor_module_sudo_add_network_V1.netuid,
                 outValue, outValueLen,
                 pageIdx, pageCount);
-        case 1: /* paratensor_sudo_add_network_V1 - tempo */;
+        case 1: /* subtensor_module_sudo_add_network_V1 - tempo */;
             return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.tempo,
+                &m->nested.subtensor_module_sudo_add_network_V1.tempo,
                 outValue, outValueLen,
                 pageIdx, pageCount);
-        case 2: /* paratensor_sudo_add_network_V1 - modality */;
+        case 2: /* subtensor_module_sudo_add_network_V1 - modality */;
             return _toStringu16(
-                &m->nested.paratensor_sudo_add_network_V1.modality,
+                &m->nested.subtensor_module_sudo_add_network_V1.modality,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
