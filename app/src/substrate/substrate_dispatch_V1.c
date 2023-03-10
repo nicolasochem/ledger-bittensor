@@ -567,12 +567,12 @@ parser_error_t _getMethod_ItemValue_V1(
         switch (itemIdx) {
         case 0: /* subtensor_module_burned_register_V1 - netuid */;
             return _toStringu16(
-                &m->nested.subtensor_module_sudo_add_network_V1.netuid,
+                &m->nested.subtensor_module_burned_register_V1.netuid,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         case 1: /* subtensor_module_burned_register_V1 - hotkey */;
             return _toStringStakingAddress32_V1(
-                &m->nested.subtensor_module_remove_stake_V1.hotkey,
+                &m->nested.subtensor_module_burned_register_V1.hotkey,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
