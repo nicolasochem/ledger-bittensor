@@ -117,7 +117,7 @@ typedef struct {
     pd_Balance_t amount_unstaked;
 } pd_subtensor_module_remove_stake_V1_t;
 
-#define PD_CALL_SUBTENSOR_MODULE_REMOVE_STAKE_V1 7
+#define PD_CALL_SUBTENSOR_MODULE_BURNED_REGISTER_V1 7
 typedef struct {
     pd_u16_t netuid;
     pd_StakingAddress32_V1_t hotkey;

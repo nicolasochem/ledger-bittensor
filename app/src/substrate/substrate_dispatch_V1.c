@@ -204,14 +204,14 @@ parser_error_t _readMethod_V1(
 const char* _getMethod_ModuleName_V1(uint8_t moduleIdx)
 {
     switch (moduleIdx) {
-    case 0x05:
+    case PD_CALL_BALANCES_V1:
         return STR_MO_BALANCES;
-    case 0x08:
+    case PD_CALL_SUBTENSOR_MODULE_V1:
         return STR_MO_SUBTENSOR_MODULE;
 #ifdef SUBSTRATE_PARSER_FULL
 #ifndef TARGET_NANOS
 #endif
-    case 0x00:
+    case PD_CALL_SYSTEM_V1:
         return STR_MO_SYSTEM;
     case 0x07:
         return STR_MO_SUDO;
