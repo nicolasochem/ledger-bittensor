@@ -100,6 +100,19 @@ public:
     };
 };
 
+class JsonTestsF : public ::testing::TestWithParam<testcase_t> {
+public:
+    struct PrintToStringParamName {
+        template<class ParamType>
+        std::string operator()(const testing::TestParamInfo<ParamType> &info) const {
+            auto p = static_cast<testcase_t>(info.param);
+            std::stringstream ss;
+            ss << p.index << "_" << p.name;
+            return ss.str();
+        }
+    };
+};
+
 // Retrieve testcases from json file
 std::vector<testcase_t> GetJsonTestCases(const std::string &jsonFile) {
     auto answer = std::vector<testcase_t>();
@@ -221,6 +234,15 @@ INSTANTIATE_TEST_SUITE_P
     JsonTestsE::PrintToStringParamName()
 );
 
+INSTANTIATE_TEST_SUITE_P
+
+(
+    JsonTestCasesSystemTxVer,
+    JsonTestsF,
+    ::testing::ValuesIn(GetJsonTestCases("testcases_burned_register.json")),
+    JsonTestsF::PrintToStringParamName()
+);
+
 // Parametric test using current runtime:
 TEST_P(JsonTestsA, CheckUIOutput_CurrentTX_Normal) { check_testcase(GetParam(), false); }
 
@@ -245,3 +267,8 @@ TEST_P(JsonTestsD, CheckUIOutput_SudoTX_Expert) { check_testcase(GetParam(), tru
 TEST_P(JsonTestsE, CheckUIOutput_SystemTX_Normal) { check_testcase(GetParam(), false); }
 
 TEST_P(JsonTestsE, CheckUIOutput_SystemTX_Expert) { check_testcase(GetParam(), true); }
+
+// Parametric test for burn reg transactions:
+TEST_P(JsonTestsF, CheckUIOutput_BurnRegTX_Normal) { check_testcase(GetParam(), false); }
+
+TEST_P(JsonTestsF, CheckUIOutput_BurnRegTX_Expert) { check_testcase(GetParam(), true); }
