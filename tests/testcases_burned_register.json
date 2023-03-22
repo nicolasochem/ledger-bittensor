@@ -6,15 +6,15 @@
     "output": [
       "0 | SubtensorModule : Burned register",
       "1 | Net UID : 0",
-      "2 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "2 | Hotkey [2/2] : iQj71naPZd9",
+      "2 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "2 | Hotkey [2/2] : R7qrBxkAJKH",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | SubtensorModule : Burned register",
       "1 | Net UID : 0",
-      "2 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "2 | Hotkey [2/2] : iQj71naPZd9",
+      "2 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "2 | Hotkey [2/2] : R7qrBxkAJKH",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
       "5 | Tip : TAO 12345678901.23456789",
@@ -31,15 +31,15 @@
     "output": [
       "0 | SubtensorModule : Burned register",
       "1 | Net UID : 1",
-      "2 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "2 | Hotkey [2/2] : iQj71naPZd9",
+      "2 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "2 | Hotkey [2/2] : R7qrBxkAJKH",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | SubtensorModule : Burned register",
       "1 | Net UID : 1",
-      "2 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "2 | Hotkey [2/2] : iQj71naPZd9",
+      "2 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "2 | Hotkey [2/2] : R7qrBxkAJKH",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
       "5 | Tip : TAO 12345678901.23456789",

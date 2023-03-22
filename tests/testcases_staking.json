@@ -5,15 +5,15 @@
     "blob": "08023132333435363738393031323334353637383930313233343536373839303132d20a1feb8ca954abd6038d2413d20a1feb8ca954ab01000000010000003c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d03c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d0",
     "output": [
       "0 | SubtensorModule : Add stake",
-      "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "1 | Hotkey [2/2] : iQj71naPZd9",
+      "1 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "1 | Hotkey [2/2] : R7qrBxkAJKH",
       "2 | Amount staked : TAO 12345678901.23456789",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | SubtensorModule : Add stake",
-      "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "1 | Hotkey [2/2] : iQj71naPZd9",
+      "1 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "1 | Hotkey [2/2] : R7qrBxkAJKH",
       "2 | Amount staked : TAO 12345678901.23456789",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
@@ -29,15 +29,15 @@
     "blob": "08033132333435363738393031323334353637383930313233343536373839303132d20a1feb8ca954abd6038d2413d20a1feb8ca954ab01000000010000003c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d03c4ce585d71512a723b20e8f122f8e70c9c8830134b8cdfa01b43bb133a401d0",
     "output": [
       "0 | SubtensorModule : Remove stake",
-      "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "1 | Hotkey [2/2] : iQj71naPZd9",
+      "1 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "1 | Hotkey [2/2] : R7qrBxkAJKH",
       "2 | Amount unstaked : TAO 12345678901.23456789",
       "3 | Tip : TAO 12345678901.23456789"
     ],
     "output_expert": [
       "0 | SubtensorModule : Remove stake",
-      "1 | Hotkey [1/2] : bt4JV2iR5N9ZRxPG4YEg2aYrUKmndDBnX4wqvK",
-      "1 | Hotkey [2/2] : iQj71naPZd9",
+      "1 | Hotkey [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
+      "1 | Hotkey [2/2] : R7qrBxkAJKH",
       "2 | Amount unstaked : TAO 12345678901.23456789",
       "3 | Chain : Bittensor",
       "4 | Nonce : 2339",
