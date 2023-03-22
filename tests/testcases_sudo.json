@@ -58,8 +58,8 @@
     "output": [
       "0 | Sudo Origin : True",
       "1 | Balances : Force transfer",
-      "2 | Source [1/2] : 5Hagq6youLgrbzWfXn9cFkq36yJcc2mCUdTSq",
-      "2 | Source [2/2] : iAfVgzwhujU",
+      "2 | Source [1/2] : 5Hagq6youLgrbzWfXn9cFkq36yJcc2mCUdTSqi",
+      "2 | Source [2/2] : AfVgzwhujU",
       "3 | Dest [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
       "3 | Dest [2/2] : R7qrBxkAJKH",
       "4 | Amount : TAO 12345678901.23456789",
@@ -68,8 +68,8 @@
     "output_expert": [
       "0 | Sudo Origin : True",
       "1 | Balances : Force transfer",
-      "2 | Source [1/2] : 5Hagq6youLgrbzWfXn9cFkq36yJcc2mCUdTSq",
-      "2 | Source [2/2] : iAfVgzwhujU",
+      "2 | Source [1/2] : 5Hagq6youLgrbzWfXn9cFkq36yJcc2mCUdTSqi",
+      "2 | Source [2/2] : AfVgzwhujU",
       "3 | Dest [1/2] : 5DBD7gaaHXmTsj18t1JTUqwjoET7k5oNW51PK",
       "3 | Dest [2/2] : R7qrBxkAJKH",
       "4 | Amount : TAO 12345678901.23456789",
