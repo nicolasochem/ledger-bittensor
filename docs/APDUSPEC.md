@@ -75,7 +75,7 @@ The general structure of commands and responses is as follows:
 | P2      | byte (1) | Parameter 2               | ignored    |     |
 | L       | byte (1) | Bytes in payload          | (depends)  |     |
 | Path[0] | byte (4) | Derivation Path Data      | 0x80000000 | 44  |
-| Path[1] | byte (4) | Derivation Path Data      | 0x80000000 | 1005 |
+| Path[1] | byte (4) | Derivation Path Data      | 0x80000000 | 354 |
 | Path[2] | byte (4) | Derivation Path Data      | ?          |     |
 | Path[3] | byte (4) | Derivation Path Data      | ?          |     |
 | Path[4] | byte (4) | Derivation Path Data      | ?          |     |
@@ -102,7 +102,7 @@ The general structure of commands and responses is as follows:
 | P2      | byte (1) | Parameter 2               | ignored    |     |
 | L       | byte (1) | Bytes in payload          | (depends)  |     |
 | Path[0] | byte (4) | Derivation Path Data      | 0x80000000 | 44  |
-| Path[1] | byte (4) | Derivation Path Data      | 0x80000000 | 1005 |
+| Path[1] | byte (4) | Derivation Path Data      | 0x80000000 | 354 |
 | Path[2] | byte (4) | Derivation Path Data      | ?          |     |
 | Path[3] | byte (4) | Derivation Path Data      | ?          |     |
 | Path[4] | byte (4) | Derivation Path Data      | ?          |     |
@@ -140,7 +140,7 @@ All other packets/chunks contain data chunks that are described below
 | Field   | Type     | Content              | Expected |
 | ------- | -------- | -------------------- | -------- |
 | Path[0] | byte (4) | Derivation Path Data | 44       |
-| Path[1] | byte (4) | Derivation Path Data | 1005      |
+| Path[1] | byte (4) | Derivation Path Data | 354      |
 | Path[2] | byte (4) | Derivation Path Data | ?        |
 | Path[3] | byte (4) | Derivation Path Data | ?        |
 | Path[4] | byte (4) | Derivation Path Data | ?        |
@@ -183,7 +183,7 @@ All other packets/chunks contain data chunks that are described below
 | Field   | Type     | Content              | Expected |
 | ------- | -------- | -------------------- | -------- |
 | Path[0] | byte (4) | Derivation Path Data | 44       |
-| Path[1] | byte (4) | Derivation Path Data | 1005      |
+| Path[1] | byte (4) | Derivation Path Data | 354      |
 | Path[2] | byte (4) | Derivation Path Data | ?        |
 | Path[3] | byte (4) | Derivation Path Data | ?        |
 | Path[4] | byte (4) | Derivation Path Data | ?        |
