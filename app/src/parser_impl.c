@@ -24,6 +24,7 @@
 #include "bignum.h"
 #include "substrate_types.h"
 #include "substrate_dispatch.h"
+#include "substrate_methods_V1.h"
 
 extern uint16_t __address_type;
 
