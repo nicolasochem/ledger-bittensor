@@ -30,15 +30,6 @@ __Z_INLINE parser_error_t _readMethod_balances_transfer_V1(
     return parser_ok;
 }
 
-__Z_INLINE parser_error_t _readMethod_balances_force_transfer_V1(
-    parser_context_t* c, pd_balances_force_transfer_V1_t* m)
-{
-    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->source))
-    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->dest))
-    CHECK_ERROR(_readCompactBalance(c, &m->amount))
-    return parser_ok;
-}
-
 __Z_INLINE parser_error_t _readMethod_balances_transfer_keep_alive_V1(
     parser_context_t* c, pd_balances_transfer_keep_alive_V1_t* m)
 {
@@ -114,6 +105,15 @@ __Z_INLINE parser_error_t _readMethod_balances_set_balance_V1(
     return parser_ok;
 }
 
+__Z_INLINE parser_error_t _readMethod_balances_force_transfer_V1(
+    parser_context_t* c, pd_balances_force_transfer_V1_t* m)
+{
+    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->source))
+    CHECK_ERROR(_readLookupasStaticLookupSource_V1(c, &m->dest))
+    CHECK_ERROR(_readCompactBalance(c, &m->amount))
+    return parser_ok;
+}
+
 __Z_INLINE parser_error_t _readMethod_balances_force_unreserve_V1(
     parser_context_t* c, pd_balances_force_unreserve_V1_t* m)
 {
@@ -143,9 +143,7 @@ parser_error_t _readMethod_V1(
     case 0x0500: /* module 5 call 0 */
         CHECK_ERROR(_readMethod_balances_transfer_V1(c, &method->nested.balances_transfer_V1))
         break;
-    case 0x0502: /* module 5 call 2 */
-        CHECK_ERROR(_readMethod_balances_force_transfer_V1(c, &method->nested.balances_force_transfer_V1))
-        break;
+    
     case 0x0503: /* module 5 call 3 */
         CHECK_ERROR(_readMethod_balances_transfer_keep_alive_V1(c, &method->nested.balances_transfer_keep_alive_V1))
         break;
@@ -182,8 +180,11 @@ parser_error_t _readMethod_V1(
         CHECK_ERROR(_readMethod_subtensor_module_sudo_add_network_V1(c, &method->nested.subtensor_module_sudo_add_network_V1))
         break;
 
-    case 0x0501: /* module 5 call 2 */
+    case 0x0501: /* module 5 call 1 */
         CHECK_ERROR(_readMethod_balances_set_balance_V1(c, &method->nested.balances_set_balance_V1))
+        break;
+    case 0x0502: /* module 5 call 2 */
+        CHECK_ERROR(_readMethod_balances_force_transfer_V1(c, &method->nested.balances_force_transfer_V1))
         break;
     case 0x0505: /* module 5 call 5 */
         CHECK_ERROR(_readMethod_balances_force_unreserve_V1(c, &method->basic.balances_force_unreserve_V1))
