@@ -187,7 +187,6 @@ parser_error_t _toStringCodeBytes_V1(
         if (truncated_result_end != parser_ok) {
             return truncated_result_end; // Return error early
         }
-        outValueEnd += (2 * 3); // 2 characters per byte
         
         return parser_ok;
     }
