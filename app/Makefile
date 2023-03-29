@@ -57,7 +57,7 @@ ifneq ($(TARGET_NAME),TARGET_NANOS)
 DEFINES += SUBSTRATE_PARSER_FULL
 endif
 APPNAME = "Bittensor"
-APPPATH = "44'/354'""
+APPPATH = "44'/354'"
 
 else ifeq ($(COIN),TAO_XL)
 # XL app configuration
