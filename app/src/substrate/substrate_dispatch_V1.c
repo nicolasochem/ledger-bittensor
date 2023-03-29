@@ -342,17 +342,6 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
-    case 0x0502: /* module 5 call 2 */
-        switch (itemIdx) {
-        case 0:
-            return STR_IT_source;
-        case 1:
-            return STR_IT_dest;
-        case 2:
-            return STR_IT_amount;
-        default:
-            return NULL;
-        }
     case 0x0503: /* module 5 call 3 */
         switch (itemIdx) {
         case 0:
@@ -429,6 +418,17 @@ const char* _getMethod_ItemName_V1(uint8_t moduleIdx, uint8_t callIdx, uint8_t i
         default:
             return NULL;
         }
+    case 0x0502: /* module 5 call 2 */
+        switch (itemIdx) {
+        case 0:
+            return STR_IT_source;
+        case 1:
+            return STR_IT_dest;
+        case 2:
+            return STR_IT_amount;
+        default:
+            return NULL;
+        }
     case 0x0505: /* module 5 call 5 */
         switch (itemIdx) {
         case 0:
@@ -477,26 +477,6 @@ parser_error_t _getMethod_ItemValue_V1(
         case 1: /* balances_transfer_V1 - amount */;
             return _toStringCompactBalance(
                 &m->nested.balances_transfer_V1.amount,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        default:
-            return parser_no_data;
-        }
-    case 0x0502: /* module 5 call 2 */
-        switch (itemIdx) {
-        case 0: /* balances_force_transfer_V1 - source */;
-            return _toStringLookupasStaticLookupSource_V1(
-                &m->nested.balances_force_transfer_V1.source,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        case 1: /* balances_force_transfer_V1 - dest */;
-            return _toStringLookupasStaticLookupSource_V1(
-                &m->nested.balances_force_transfer_V1.dest,
-                outValue, outValueLen,
-                pageIdx, pageCount);
-        case 2: /* balances_force_transfer_V1 - amount */;
-            return _toStringCompactBalance(
-                &m->nested.balances_force_transfer_V1.amount,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
@@ -620,6 +600,26 @@ parser_error_t _getMethod_ItemValue_V1(
         case 2: /* balances_set_balance_V1 - new_reserved */;
             return _toStringCompactBalance(
                 &m->nested.balances_set_balance_V1.new_reserved,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        default:
+            return parser_no_data;
+        }
+    case 0x0502: /* module 5 call 2 */
+        switch (itemIdx) {
+        case 0: /* balances_force_transfer_V1 - source */;
+            return _toStringLookupasStaticLookupSource_V1(
+                &m->nested.balances_force_transfer_V1.source,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 1: /* balances_force_transfer_V1 - dest */;
+            return _toStringLookupasStaticLookupSource_V1(
+                &m->nested.balances_force_transfer_V1.dest,
+                outValue, outValueLen,
+                pageIdx, pageCount);
+        case 2: /* balances_force_transfer_V1 - amount */;
+            return _toStringCompactBalance(
+                &m->nested.balances_force_transfer_V1.amount,
                 outValue, outValueLen,
                 pageIdx, pageCount);
         default:
