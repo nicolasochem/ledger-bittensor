@@ -29,6 +29,8 @@ void __assert_fail(const char * assertion, const char * file, unsigned int line,
 }
 #endif
 
+#ifdef SUBSTRATE_PARSER_FULL
+
 #define FIELD_FIXED_TOTAL_COUNT 8
 
 #define FIELD_SUDO          0
@@ -40,7 +42,22 @@ void __assert_fail(const char * assertion, const char * file, unsigned int line,
 #define FIELD_ERA_PERIOD    6
 #define FIELD_BLOCK_HASH    7
 
+#else
+
+#define FIELD_FIXED_TOTAL_COUNT 7
+
+#define FIELD_METHOD        0
+#define FIELD_NETWORK       1
+#define FIELD_NONCE         2
+#define FIELD_TIP           3
+#define FIELD_ERA_PHASE     4
+#define FIELD_ERA_PERIOD    5
+#define FIELD_BLOCK_HASH    6
+
+#endif
+
 #define EXPERT_FIELDS_TOTAL_COUNT 5
+
 
 parser_error_t parser_parse(parser_context_t *ctx, const uint8_t *data, size_t dataLen, parser_tx_t *tx_obj) {
     CHECK_PARSER_ERR(parser_init(ctx, data, dataLen))
@@ -71,9 +88,11 @@ bool parser_show_tip(const parser_context_t *ctx){
     return true;
 }
 
+#ifdef SUBSTRATE_PARSER_FULL
 bool parser_show_sudo(const parser_context_t *ctx){
     return ctx->tx_obj->isSudo; // Don't show sudo if it's false
 }
+#endif
 
 parser_error_t parser_validate(const parser_context_t *ctx) {
     // Iterate through all items to check that all can be shown and are valid
@@ -100,9 +119,13 @@ parser_error_t parser_getNumItems(const parser_context_t *ctx, uint8_t *num_item
     if (!parser_show_tip(ctx)) {
         total -= 1;
     }
+    
+    #ifdef SUBSTRATE_PARSER_FULL
     if (!parser_show_sudo(ctx)) {
         total -= 1;
     }
+    #endif
+
     if (!parser_show_expert_fields()) {
         total -= EXPERT_FIELDS_TOTAL_COUNT;
 
@@ -140,6 +163,8 @@ parser_error_t parser_getItem(const parser_context_t *ctx,
     }
 
     parser_error_t err = parser_ok;
+
+    #ifdef SUBSTRATE_PARSER_FULL
     if (displayIdx == FIELD_SUDO && parser_show_sudo(ctx)) {
         snprintf(outKey, outKeyLen, "Sudo Origin");
         snprintf(outVal, outValLen, "%s", ctx->tx_obj->isSudo ? "True" : "False");
@@ -150,6 +175,7 @@ parser_error_t parser_getItem(const parser_context_t *ctx,
     if (!parser_show_sudo(ctx)) {
         displayIdx++;
     }
+    #endif
 
     if (displayIdx == FIELD_METHOD) {
         snprintf(outKey, outKeyLen, "%s", _getMethod_ModuleName(ctx->tx_obj->transactionVersion, ctx->tx_obj->callIndex.moduleIdx));

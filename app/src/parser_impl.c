@@ -24,7 +24,6 @@
 #include "bignum.h"
 #include "substrate_types.h"
 #include "substrate_dispatch.h"
-#include "substrate_methods_V1.h"
 
 extern uint16_t __address_type;
 
@@ -36,6 +35,7 @@ parser_error_t _readTx(parser_context_t *c, parser_tx_t *v) {
 
     // Now forward parse
     CHECK_ERROR(_readCallIndex(c, &v->callIndex))
+    #ifdef SUBSTRATE_PARSER_FULL
     // If call index is sudo, then we need to read the call index again
     v->isSudo = false; // Reset sudo flag
     if (v->callIndex.moduleIdx == PD_CALL_SUDO_V1) {
@@ -47,6 +47,7 @@ parser_error_t _readTx(parser_context_t *c, parser_tx_t *v) {
         }
         // Otherwise we have a sudo call that is not sudo.sudo
     } 
+    #endif
 
     CHECK_ERROR(_readMethod(c, v->callIndex.moduleIdx, v->callIndex.idx, &v->method))
     CHECK_ERROR(_readEra(c, &v->era))

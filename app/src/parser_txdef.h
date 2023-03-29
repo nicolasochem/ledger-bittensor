@@ -46,7 +46,11 @@ typedef struct {
     pd_Hash_t blockHash;
 
     pd_NestCallIdx_t nestCallIdx;
+
+    #ifdef SUBSTRATE_PARSER_FULL
     bool isSudo;
+    #endif
+    
 } parser_tx_t;
 
 #ifdef __cplusplus
