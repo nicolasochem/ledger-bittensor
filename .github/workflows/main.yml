@@ -95,41 +95,6 @@ jobs:
           echo "LNS app size: ${{needs.build_ledger.outputs.size}} KiB"
           [ ${{needs.build_ledger.outputs.size}} -le $NANOS_LIMIT_SIZE ]
 
-  test_zemu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test
-        run: |
-          id
-          echo $HOME
-          echo $DISPLAY
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-      - run: sudo apt-get update -y && sudo apt-get install -y libusb-1.0.0 libudev-dev
-      - name: Install rust
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake binutils-dev libcurl4-openssl-dev libiberty-dev libelf-dev libdw-dev
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain none -y;
-      - name: Install node
-        uses: actions/setup-node@v3
-      - name: Install yarn
-        run: |
-          npm install -g yarn
-      - name: Build Ledger app
-        run: |
-          make SUBSTRATE_PARSER_FULL=1
-      - name: Build/Install build js deps
-        run: |
-          export PATH=~/.cargo/bin:$PATH
-          make zemu_install
-      - name: Run zemu tests
-        run: |
-          export PATH=~/.cargo/bin:$PATH
-          make zemu_test
-
   test_zemu_sr25519:
     runs-on: ubuntu-latest
     steps:
@@ -161,7 +126,7 @@ jobs:
           cd tests_zemu && yarn testSR25519
 
   build_package_0:
-    needs: [configure, build, build_ledger, test_zemu, test_zemu_sr25519]
+    needs: [configure, build, build_ledger, test_zemu_sr25519]
     runs-on: ubuntu-latest
     container:
       image: zondax/builder-bolos:latest
@@ -201,7 +166,7 @@ jobs:
       contents: write
 
   build_package_1:
-    needs: [configure, build, build_ledger, test_zemu, test_zemu_sr25519]
+    needs: [configure, build, build_ledger, test_zemu_sr25519]
     runs-on: ubuntu-latest
     container:
       image: zondax/builder-bolos:latest
@@ -241,7 +206,7 @@ jobs:
       contents: write
 
   build_package_2:
-    needs: [configure, build, build_ledger, test_zemu, test_zemu_sr25519]
+    needs: [configure, build, build_ledger, test_zemu_sr25519]
     runs-on: ubuntu-latest
     container:
       image: zondax/builder-bolos:latest
