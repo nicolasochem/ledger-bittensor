@@ -74,7 +74,7 @@ endef
 $(error "$(error_message)")
 endif
 
-APP_LOAD_PARAMS = --curve ed25519 $(COMMON_LOAD_PARAMS) --path $(APPPATH)
+APP_LOAD_PARAMS = --curve ed25519 $(COMMON_LOAD_PARAMS) --path $(APPPATH) --apiLevel 1
 
 NANOS_STACK_SIZE := 3216
 
